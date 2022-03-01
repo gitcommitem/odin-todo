@@ -1,0 +1,167 @@
+/* manrope-regular - latin */
+@font-face {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+         url('./fonts/manrope-v11-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('./fonts/manrope-v11-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* manrope-600 - latin */
+  @font-face {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 600;
+    src: local(''),
+         url('./fonts/manrope-v11-latin-600.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('./fonts/manrope-v11-latin-600.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* manrope-800 - latin */
+  @font-face {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 800;
+    src: local(''),
+         url('./fonts/manrope-v11-latin-800.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('./fonts/manrope-v11-latin-800.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+
+:root{
+    font-family: 'Manrope', sans-serif;
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p
+{
+  margin: 0;
+}
+
+/* Set core body defaults */
+body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+}
+
+/* Utility Classes */
+.hflex{
+    display: flex;
+}
+
+ul{
+    padding: none;
+    list-style: none;
+}
+
+li{
+    margin-right: 1rem;
+}
+
+li:last-of-type{
+    margin-right: 0;
+}
+
+/* Typography */
+h1{
+    font-weight: 800;
+}
+
+h1.kicker{
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+h2{
+    font-weight: 600;
+}
+
+p{
+    font-weight: 400;
+}
+
+div#sidebar{
+    background-color: lightgray;
+}
+
+div#main{
+    background-color: #fafafa;
+}
+
+div#wrapper{
+    margin-left: 4rem;
+    margin-right: 4rem;
+}
+
+#proj-desc,.todo-desc{
+    opacity: 0.6;
+}
+
+section#filter{
+    justify-content: space-between;
+    align-items: center;
+}
+
+section#todos{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr; 
+    gap: 2rem;
+}
+
+.todo-item{
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 0.6rem;
+    margin-bottom: 1rem;
+}
+
+div.todo-item.completed{
+    opacity: 0.3;
+}
+
+div.color-bar{
+    border-radius: 3rem 3rem 0 0;
+    min-height: 0.5rem;
+}
+
+div.todo-item.high>div.color-bar{
+    background-color: #FF8383;
+}
+
+div.todo-item.med>div.color-bar{
+    background-color: #FFCE83;
+}
+
+div.todo-item.low>div.color-bar{
+    background-color: #D5C1FF;
+}
+
+div.todo-item.none>div.color-bar{
+    background-color: #E9E9E9;
+}
+
+div.todo-item.completed>div.color-bar{
+    background-color: #AAFF9C;
+}
+
+.todo-info{
+    padding: 1rem;
+}
