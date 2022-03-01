@@ -165,3 +165,13 @@ div.todo-item.completed>div.color-bar{
 .todo-info{
     padding: 1rem;
 }
+
+section#none{
+    grid-column: 1/4;
+}
+
+section#none>div.grid-cont{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+}

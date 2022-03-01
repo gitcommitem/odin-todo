@@ -16,7 +16,7 @@ const test4 = createTodoObj("This is a card with no priority set","You can drag 
 const test5 = createTodoObj("","",null,"none","Not Started");
 const test6 = createTodoObj("This is a completed card","You can drag cards to rearrange order or change their priority","03/01/2022","high","completed");
 
-const preloadedTodos = [test1,test2,test3,test4,test5,test6];
+const preloadedTodos = [test1,test2,test3,test4,test5,test6,test4,test4,test5];
 
 preloadedTodos.forEach((todo)=>{
     renderTodo(todo);

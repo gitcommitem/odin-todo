@@ -6,8 +6,13 @@ const renderTodo = (todo) => {
         cardDivEl.classList.add("completed");
     };
 
-    const priorityContEl = document.querySelector(`#${todo.priority}`);
-    priorityContEl.appendChild(cardDivEl);
+    if(todo.priority === "none"){
+        const priorityContEl = document.querySelector(`#${todo.priority} div.grid-cont`);
+        priorityContEl.appendChild(cardDivEl);
+    }else{
+        const priorityContEl = document.querySelector(`#${todo.priority}`);
+        priorityContEl.appendChild(cardDivEl);
+    }
 
     const colorBarDivEl = document.createElement("div");
     colorBarDivEl.classList.add("color-bar");
