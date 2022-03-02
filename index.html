@@ -8,7 +8,15 @@
     <script src="main.js" defer></script>
 </head>
 <body>
-    <div id="sidebar"></div>
+    <div id="sidebar">
+        <button type="button"> 
+            <img src="./plus-bold.svg" alt="Add icon">
+            Add new project
+        </button>
+        <ul id="projects">
+        </ul>
+        <p>Settings</p>
+    </div>
     <div id="main">
         <div id="wrapper">
 
@@ -16,13 +24,16 @@
                 <div class="hflex">
                     <h1 id="icon"></h1>
                     <h1 id="project-title"></h1>
+                    <button type="button">
+                        <img src="./dots-three-bold.svg" alt="Project options icon">
+                    </button>
                 </div>
                 <h2 id="deadline"></h2>
                 <p id="proj-desc"></p>
             </section>
 
             <section class="hflex" id="filter">
-                <h3>Filter</h3>
+                <h3>Filter for</h3>
                 <ul class="hflex" id="priority">
                     <li>High Priority</li>
                     <li>Medium Priority</li>
@@ -39,19 +50,52 @@
 
             <section id="todos">
                 <section id="high">
-                    <h1 class="kicker">High Priority</h1>
+                    <div class="hflex">
+                        <h1 class="kicker">High Priority</h1>
+                        <button type="button">
+                            <img src="./dots-three-bold.svg" alt="To-do options icon">
+                        </button>
+                        <button type="button">
+                            <img src="./plus-bold.svg" alt="Add new to-do icon">
+                        </button>
+                    </div>
+                    
                 </section>
 
                 <section id="med">
-                    <h1 class="kicker">Medium Priority</h1>
+                    <div class="hflex">
+                        <h1 class="kicker">Medium Priority</h1>
+                        <button type="button">
+                            <img src="./dots-three-bold.svg" alt="To-do options icon">
+                        </button>
+                        <button type="button">
+                            <img src="./plus-bold.svg" alt="Add new to-do icon">
+                        </button>
+                    </div>
                 </section>
 
                 <section id="low">
-                    <h1 class="kicker">Low Priority</h1>
+                    <div class="hflex">
+                        <h1 class="kicker">Low Priority</h1>
+                        <button type="button">
+                            <img src="./dots-three-bold.svg" alt="To-do options icon">
+                        </button>
+                        <button type="button">
+                            <img src="./plus-bold.svg" alt="Add new to-do icon">
+                        </button>
+                    </div>
                 </section>
 
                 <section id="none">
-                    <h1 class="kicker">No Priority Set</h1>
+                    <div class="hflex">
+                        <h1 class="kicker">No Priority Set</h1>
+                        <button type="button">
+                            <img src="./dots-three-bold.svg" alt="To-do options icon">
+                        </button>
+                        <button type="button">
+                            <img src="./plus-bold.svg" alt="Add new to-do icon">
+                        </button>
+                    </div>
                     <div class="grid-cont"></div>
                 </section>
 
