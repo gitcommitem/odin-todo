@@ -55,8 +55,6 @@ body {
     min-height: 100vh;
     text-rendering: optimizeSpeed;
     line-height: 1.5;
-    display: grid;
-    grid-template-columns: 1fr 7fr;
 }
 
 /* Utility Classes */
@@ -118,6 +116,11 @@ h3{
 
 p{
     font-weight: 400;
+}
+
+div.container{
+    display: grid;
+    grid-template-columns: 1fr 7fr;
 }
 
 div#sidebar{
@@ -244,4 +247,14 @@ section#none>div.grid-cont{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
+}
+
+div.modal-overlay{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: rgba(255, 255, 255, 0.6);
+    z-index: 1;
 }
