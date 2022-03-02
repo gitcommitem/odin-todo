@@ -2,8 +2,10 @@ import "./style.css";
 
 import { createProject } from "./projectFactory";
 import { renderProject } from "./renderProject";
+import { renderProjectList } from "./renderProjectList";
 
 const general = createProject("📨","General","General to-dos",null);
+renderProjectList(general);
 renderProject(general);
 
 import { createTodoObj } from "./todoFactory";
