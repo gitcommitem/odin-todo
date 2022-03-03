@@ -8,7 +8,29 @@
     <script src="main.js" defer></script>
 </head>
 <body>
-    <div class="modal-overlay hidden"></div>
+    <div class="modal-overlay hflex hidden">
+        <div class="modal">
+            <form class="vflex">
+                <label for="project-title">Project title</label>
+                <input type="text" id="project-title">
+                <label for="project-desc">Project description</label>
+                <textarea></textarea>
+                <div class="hflex">
+                    <label for="deadline">Deadline</label>
+                    <div>
+                        <input type="checkbox" name="deadline">
+                        <label for="deadline" name="deadline">No deadline for this project</label>
+                    </div>
+                </div>
+                <input type="date" name="deadline">
+
+                <div>
+                    <button type="button">Cancel</button>
+                    <button type="button">Create new project</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="container">
         <div id="sidebar">
             <button type="button">
@@ -20,7 +42,13 @@
             <p>Settings</p>
         </div>
         <div id="main">
-            <div class="modal-overlay hidden"></div>
+            <div class="modal-overlay hidden">
+                <div class="modal">
+                    <form>
+
+                    </form>
+                </div>
+            </div>
             <div id="wrapper">
                 <section id="project-info">
                     <div class="hflex">
