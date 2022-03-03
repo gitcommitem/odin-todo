@@ -1,12 +1,20 @@
 import "./style.css";
 
+const listOfProjects = [];
+
 import { createProject } from "./projectFactory";
 import { renderProject } from "./renderProject";
 import { renderProjectList } from "./renderProjectList";
+import { focusProject } from "./focusProject";
 
-const general = createProject("📨","General","General to-dos",null);
+const general = createProject("📨","General","General to-dos","",listOfProjects);
+listOfProjects.push(general);
 renderProjectList(general);
+focusProject(general);
 renderProject(general);
+
+console.log(listOfProjects.length);
+console.log(listOfProjects[0].id);
 
 import { createTodoObj } from "./todoFactory";
 import { renderTodo } from "./renderTodo";
@@ -26,9 +34,12 @@ preloadedTodos.forEach((todo)=>{
 
 const addProjectButtonEl = document.querySelector("div#sidebar button");
 addProjectButtonEl.addEventListener("click",()=>{
-    const newProj = createProject("","","","");
+    const newProj = createProject("","","","",listOfProjects);
+    listOfProjects.push(newProj);
     console.log(newProj);
     renderProjectList(newProj);
+    focusProject(newProj);
+    renderProject(newProj);
 });
 
 const addTodoButtonEl = document.querySelectorAll("section#todos button.add")
