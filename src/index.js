@@ -23,3 +23,10 @@ const preloadedTodos = [test1,test2,test3,test4,test5,test6,test4,test4,test5];
 preloadedTodos.forEach((todo)=>{
     renderTodo(todo);
 });
+
+const addProjectButtonEl = document.querySelector("div#sidebar button");
+addProjectButtonEl.addEventListener("click",()=>{
+    const newProj = createProject("","","","");
+    console.log(newProj);
+    renderProjectList(newProj);
+});
