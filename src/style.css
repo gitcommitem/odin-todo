@@ -199,7 +199,7 @@ section#filter{
 section#todos{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr; 
+    grid-template-rows: repeat(autofit); 
     gap: 2rem;
 }
 

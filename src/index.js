@@ -30,3 +30,34 @@ addProjectButtonEl.addEventListener("click",()=>{
     console.log(newProj);
     renderProjectList(newProj);
 });
+
+const addTodoButtonEl = document.querySelectorAll("section#todos button.add")
+addTodoButtonEl.forEach(button =>{
+    button.addEventListener("click",()=>{
+
+        const highPriority = document.querySelector("section#high button.add");
+        if(button === highPriority){
+            const newTodo = createTodoObj("","","","high","");
+            renderTodo(newTodo);
+        };
+
+        const medPriority = document.querySelector("section#med button.add");
+        if(button === medPriority){
+            const newTodo = createTodoObj("","","","med","");
+            renderTodo(newTodo);
+        };
+
+        const lowPriority = document.querySelector("section#low button.add");
+        if(button === lowPriority){
+            const newTodo = createTodoObj("","","","low","");
+            renderTodo(newTodo);
+        };
+
+        const noPriority = document.querySelector("section#none button.add");
+        if(button === noPriority){
+            const newTodo = createTodoObj("","","","none","");
+            renderTodo(newTodo);
+        };
+
+    });
+});
