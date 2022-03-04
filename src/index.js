@@ -29,17 +29,45 @@ const test6 = createTodoObj("This is a completed card","You can drag cards to re
 const preloadedTodos = [test1,test2,test3,test4,test5,test6,test4,test4,test5];
 
 preloadedTodos.forEach((todo)=>{
-    renderTodo(todo);
+    general.todos.push(todo);
+    console.log(general.todos);
 });
 
-const addProjectButtonEl = document.querySelector("div#sidebar button");
-addProjectButtonEl.addEventListener("click",()=>{
-    const newProj = createProject("","","","",listOfProjects);
-    listOfProjects.push(newProj);
-    console.log(newProj);
-    renderProjectList(newProj);
-    focusProject(newProj);
-    renderProject(newProj);
+general.todos.forEach(todo => {
+    renderTodo(todo);
+})
+
+import { removePrevProjTodos } from "./removePrevProjTodos";
+
+const sidebarEl = document.querySelector("div#sidebar");
+sidebarEl.addEventListener("click",(target) =>{
+    
+    const addNewProjectButtonEl = target.target.matches("button") === true;
+    if(addNewProjectButtonEl){
+        const newProj = createProject("","","","",listOfProjects);
+        listOfProjects.push(newProj);
+        console.log(newProj);
+        renderProjectList(newProj);
+        focusProject(newProj);
+        renderProject(newProj);
+        removePrevProjTodos();
+    };
+
+    const projectLiEl = target.target.matches("li[data-project-id]") === true;
+    if(projectLiEl){
+        const targetProjectId = +target.target.dataset.projectId;
+        const targetProject = listOfProjects.filter(project => project.id === targetProjectId)
+
+        focusProject(targetProject[0]);
+        renderProject(targetProject[0]);
+        removePrevProjTodos();
+        targetProject[0].todos.forEach(todo=>{
+            renderTodo(todo);
+        });
+
+    };
+
+    console.log(target.target.tagName);
 });
 
 const addTodoButtonEl = document.querySelectorAll("section#todos button.add")

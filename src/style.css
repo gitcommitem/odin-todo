@@ -103,9 +103,6 @@ h1#icon{
     margin-right: 0.5rem;
 }
 
-#title-wrapper{
-}
-
 h1#icon:hover{
     cursor: pointer;
     position: relative;
