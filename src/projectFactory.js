@@ -33,7 +33,7 @@ const createProject = (icon,title,desc,deadline,listOfProjects) => {
     };
 
     if(title === ""){
-        title = "Untitled Project"
+        title = "Untitled"
     };
 
     if(desc === ""){

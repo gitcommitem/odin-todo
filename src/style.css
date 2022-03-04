@@ -103,6 +103,20 @@ h1#icon{
     margin-right: 0.5rem;
 }
 
+#title-wrapper{
+}
+
+h1#icon:hover{
+    cursor: pointer;
+    position: relative;
+    left: -0.5rem;
+    margin-right: -0.5rem;
+    padding: 0rem 0.5rem;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+    background-color: white;
+    border-radius: 0.2rem;
+}
+
 h1.kicker{
     font-weight: 800;
     font-size: 0.9rem;
@@ -117,6 +131,8 @@ h1.todo-title{
 }
 
 h2{
+    opacity: 0.7;
+    font-size: 1.2rem;
     font-weight: 600;
 }
 
@@ -148,6 +164,10 @@ div#sidebar li:hover,div#sidebar li.focus{
     background-color: #fafafa;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
 
+}
+
+div#sidebar li.focus{
+    font-weight: 600;
 }
 
 div#main{
@@ -288,4 +308,23 @@ div.modal{
     padding: 2rem;
     width: 55ch;
     height: fit-content;
+}
+
+textarea{
+    font-family: 'Manrope',sans-serif;
+    resize: vertical;
+    min-height: 1.7rem;
+    max-height: 45vh;
+    font-size: 1rem;
+}
+
+input:read-only,textarea:read-only{
+    background-color: inherit;
+    border: none;
+}
+
+input#projectTitle{
+    padding: 1;
+    font-size: 1.5rem;
+    font-weight: 800;
 }
