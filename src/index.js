@@ -79,13 +79,14 @@ mainDivEl.addEventListener("click",(target)=>{
     const currentProject = listOfProjects[currentProjectIndex];
 
     const isTitleInputEl = target.target.matches("section#project-info div.hflex input#projectTitle") === true;
-    if(isTitleInputEl){
+    const isReadOnly = target.target.readOnly === true;
+    if(isTitleInputEl && isReadOnly){
         const titleInputEl = document.querySelector("input#projectTitle");
         toggleReadOnly(titleInputEl);
     }
 
     const isDescTxtAreaEl = target.target.matches("section#project-info textarea#proj-desc") === true;
-    if(isDescTxtAreaEl){
+    if(isDescTxtAreaEl && isReadOnly){
         const descTxtAreaEl = document.querySelector("textarea#proj-desc");
         toggleReadOnly(descTxtAreaEl);
     }
@@ -122,7 +123,7 @@ mainDivEl.addEventListener("click",(target)=>{
 });
 
 mainDivEl.addEventListener("focusout",(target)=>{
-    
+
     const isTitleInputEl = target.target.matches("section#project-info div.hflex input#projectTitle") === true;
     if(isTitleInputEl){
         const titleInputEl = document.querySelector("input#projectTitle");
