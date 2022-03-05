@@ -129,18 +129,28 @@ mainDivEl.addEventListener("focusin",(target)=>{
 
 });
 
+import { getUpdatedValue } from "./getUpdatedValue"; 
+
 mainDivEl.addEventListener("focusout",(target)=>{
+    const currentProjectId = +document.querySelector("div#sidebar li.focus").dataset.projectId;
+    const currentProjectIndex = listOfProjects.findIndex(project => project.id === currentProjectId);
+    const currentProject = listOfProjects[currentProjectIndex];
 
     const isTitleInputEl = target.target.matches("section#project-info div.hflex input#projectTitle") === true;
     if(isTitleInputEl){
         const titleInputEl = document.querySelector("input#projectTitle");
         toggleReadOnly(titleInputEl);
+        const updatedTitle = getUpdatedValue("input#projectTitle");
+        currentProject.title = updatedTitle;
+        console.log(currentProject.title);
     }
 
     const isDescTxtAreaEl = target.target.matches("section#project-info textarea#proj-desc") === true;
     if(isDescTxtAreaEl){
         const descTxtAreaEl = document.querySelector("textarea#proj-desc");
         toggleReadOnly(descTxtAreaEl);
+        const updatedProjDesc = getUpdatedValue("textarea#proj-desc");
+        currentProject.desc = updatedProjDesc;
     }
 
     console.log(target);
