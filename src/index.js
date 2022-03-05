@@ -42,8 +42,8 @@ import { removePrevProjTodos } from "./removePrevProjTodos";
 const sidebarEl = document.querySelector("div#sidebar");
 sidebarEl.addEventListener("click",(target) =>{
     
-    const addNewProjectButtonEl = target.target.matches("button") === true;
-    if(addNewProjectButtonEl){
+    const isAddNewProjectButtonEl = target.target.matches("button") === true;
+    if(isAddNewProjectButtonEl){
         const newProj = createProject("","","","",listOfProjects);
         listOfProjects.push(newProj);
         console.log(newProj);
@@ -53,8 +53,8 @@ sidebarEl.addEventListener("click",(target) =>{
         removePrevProjTodos();
     };
 
-    const projectLiEl = target.target.matches("li[data-project-id]") === true;
-    if(projectLiEl){
+    const isProjectLiEl = target.target.matches("li[data-project-id]") === true;
+    if(isProjectLiEl){
         const targetProjectId = +target.target.dataset.projectId;
         const targetProject = listOfProjects.filter(project => project.id === targetProjectId)
 
@@ -70,36 +70,49 @@ sidebarEl.addEventListener("click",(target) =>{
     console.log(target.target.tagName);
 });
 
-const mainDivEl = document.querySelector("div#main");
+import { toggleReadOnly } from "./toggleReadOnly";
 
+const mainDivEl = document.querySelector("div#main");
 mainDivEl.addEventListener("click",(target)=>{
     const currentProjectId = +document.querySelector("div#sidebar li.focus").dataset.projectId;
     const currentProjectIndex = listOfProjects.findIndex(project => project.id === currentProjectId);
     const currentProject = listOfProjects[currentProjectIndex];
 
-    const addHighPriorityEl = target.target.matches("section#high button.add img") === true;
-    if(addHighPriorityEl){
+    const isTitleInputEl = target.target.matches("section#project-info div.hflex input#projectTitle") === true;
+    if(isTitleInputEl){
+        const titleInputEl = document.querySelector("input#projectTitle");
+        toggleReadOnly(titleInputEl);
+    }
+
+    const isDescTxtAreaEl = target.target.matches("section#project-info textarea#proj-desc") === true;
+    if(isDescTxtAreaEl){
+        const descTxtAreaEl = document.querySelector("textarea#proj-desc");
+        toggleReadOnly(descTxtAreaEl);
+    }
+
+    const isAddHighPriorityEl = target.target.matches("section#high button.add img") === true;
+    if(isAddHighPriorityEl){
         const newTodo = createTodoObj("","","","high","");
         currentProject.todos.push(newTodo);
         renderTodo(newTodo);
     }
 
-    const addMedPriorityEl = target.target.matches("section#med button.add img") === true;
-    if(addMedPriorityEl){
+    const isAddMedPriorityEl = target.target.matches("section#med button.add img") === true;
+    if(isAddMedPriorityEl){
         const newTodo = createTodoObj("","","","med","");
         currentProject.todos.push(newTodo);
         renderTodo(newTodo);
     }
 
-    const addLowPriorityEl = target.target.matches("section#low button.add img") === true;
-    if(addLowPriorityEl){
+    const isAddLowPriorityEl = target.target.matches("section#low button.add img") === true;
+    if(isAddLowPriorityEl){
         const newTodo = createTodoObj("","","","low","");
         currentProject.todos.push(newTodo);
         renderTodo(newTodo);
     }
 
-    const addNoPriorityEl = target.target.matches("section#none button.add img") === true;
-    if(addNoPriorityEl){
+    const isAddNoPriorityEl = target.target.matches("section#none button.add img") === true;
+    if(isAddNoPriorityEl){
         const newTodo = createTodoObj("","","","none","");
         currentProject.todos.push(newTodo);
         renderTodo(newTodo);
