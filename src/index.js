@@ -120,3 +120,20 @@ mainDivEl.addEventListener("click",(target)=>{
 
     console.log(target.target.tagName);
 });
+
+mainDivEl.addEventListener("focusout",(target)=>{
+    
+    const isTitleInputEl = target.target.matches("section#project-info div.hflex input#projectTitle") === true;
+    if(isTitleInputEl){
+        const titleInputEl = document.querySelector("input#projectTitle");
+        toggleReadOnly(titleInputEl);
+    }
+
+    const isDescTxtAreaEl = target.target.matches("section#project-info textarea#proj-desc") === true;
+    if(isDescTxtAreaEl){
+        const descTxtAreaEl = document.querySelector("textarea#proj-desc");
+        toggleReadOnly(descTxtAreaEl);
+    }
+
+    console.log(target);
+});
