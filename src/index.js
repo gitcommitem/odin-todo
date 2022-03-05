@@ -73,28 +73,35 @@ sidebarEl.addEventListener("click",(target) =>{
 const addTodoButtonEl = document.querySelectorAll("section#todos button.add")
 addTodoButtonEl.forEach(button =>{
     button.addEventListener("click",()=>{
+        const currentProjectId = +document.querySelector("div#sidebar li.focus").dataset.projectId;
+        const currentProjectIndex = listOfProjects.findIndex(project => project.id === currentProjectId);
+        const currentProject = listOfProjects[currentProjectIndex];
 
         const highPriority = document.querySelector("section#high button.add");
         if(button === highPriority){
             const newTodo = createTodoObj("","","","high","");
+            currentProject.todos.push(newTodo);
             renderTodo(newTodo);
         };
 
         const medPriority = document.querySelector("section#med button.add");
         if(button === medPriority){
             const newTodo = createTodoObj("","","","med","");
+            currentProject.todos.push(newTodo);
             renderTodo(newTodo);
         };
 
         const lowPriority = document.querySelector("section#low button.add");
         if(button === lowPriority){
             const newTodo = createTodoObj("","","","low","");
+            currentProject.todos.push(newTodo);
             renderTodo(newTodo);
         };
 
         const noPriority = document.querySelector("section#none button.add");
         if(button === noPriority){
             const newTodo = createTodoObj("","","","none","");
+            currentProject.todos.push(newTodo);
             renderTodo(newTodo);
         };
 
