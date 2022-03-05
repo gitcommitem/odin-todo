@@ -70,40 +70,40 @@ sidebarEl.addEventListener("click",(target) =>{
     console.log(target.target.tagName);
 });
 
-const addTodoButtonEl = document.querySelectorAll("section#todos button.add")
-addTodoButtonEl.forEach(button =>{
-    button.addEventListener("click",()=>{
-        const currentProjectId = +document.querySelector("div#sidebar li.focus").dataset.projectId;
-        const currentProjectIndex = listOfProjects.findIndex(project => project.id === currentProjectId);
-        const currentProject = listOfProjects[currentProjectIndex];
+const mainDivEl = document.querySelector("div#main");
 
-        const highPriority = document.querySelector("section#high button.add");
-        if(button === highPriority){
-            const newTodo = createTodoObj("","","","high","");
-            currentProject.todos.push(newTodo);
-            renderTodo(newTodo);
-        };
+mainDivEl.addEventListener("click",(target)=>{
+    const currentProjectId = +document.querySelector("div#sidebar li.focus").dataset.projectId;
+    const currentProjectIndex = listOfProjects.findIndex(project => project.id === currentProjectId);
+    const currentProject = listOfProjects[currentProjectIndex];
 
-        const medPriority = document.querySelector("section#med button.add");
-        if(button === medPriority){
-            const newTodo = createTodoObj("","","","med","");
-            currentProject.todos.push(newTodo);
-            renderTodo(newTodo);
-        };
+    const addHighPriorityEl = target.target.matches("section#high button.add img") === true;
+    if(addHighPriorityEl){
+        const newTodo = createTodoObj("","","","high","");
+        currentProject.todos.push(newTodo);
+        renderTodo(newTodo);
+    }
 
-        const lowPriority = document.querySelector("section#low button.add");
-        if(button === lowPriority){
-            const newTodo = createTodoObj("","","","low","");
-            currentProject.todos.push(newTodo);
-            renderTodo(newTodo);
-        };
+    const addMedPriorityEl = target.target.matches("section#med button.add img") === true;
+    if(addMedPriorityEl){
+        const newTodo = createTodoObj("","","","med","");
+        currentProject.todos.push(newTodo);
+        renderTodo(newTodo);
+    }
 
-        const noPriority = document.querySelector("section#none button.add");
-        if(button === noPriority){
-            const newTodo = createTodoObj("","","","none","");
-            currentProject.todos.push(newTodo);
-            renderTodo(newTodo);
-        };
+    const addLowPriorityEl = target.target.matches("section#low button.add img") === true;
+    if(addLowPriorityEl){
+        const newTodo = createTodoObj("","","","low","");
+        currentProject.todos.push(newTodo);
+        renderTodo(newTodo);
+    }
 
-    });
+    const addNoPriorityEl = target.target.matches("section#none button.add img") === true;
+    if(addNoPriorityEl){
+        const newTodo = createTodoObj("","","","none","");
+        currentProject.todos.push(newTodo);
+        renderTodo(newTodo);
+    }
+
+    console.log(target.target.tagName);
 });
