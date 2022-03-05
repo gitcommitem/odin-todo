@@ -78,6 +78,42 @@ mainDivEl.addEventListener("click",(target)=>{
     const currentProjectIndex = listOfProjects.findIndex(project => project.id === currentProjectId);
     const currentProject = listOfProjects[currentProjectIndex];
 
+    const isAddHighPriorityImgEl = target.target.matches("section#high button.add img") === true;
+    const isAddHighPriorityButtonEl = target.target.matches("section#high button.add") === true;
+    if(isAddHighPriorityButtonEl || isAddHighPriorityImgEl){
+        const newTodo = createTodoObj("","","","high","");
+        currentProject.todos.push(newTodo);
+        renderTodo(newTodo);
+    }
+
+    const isAddMedPriorityImgEl = target.target.matches("section#med button.add img") === true;
+    const isAddMedPriorityButtonEl = target.target.matches("section#med button.add") === true;
+    if(isAddMedPriorityButtonEl || isAddMedPriorityImgEl){
+        const newTodo = createTodoObj("","","","med","");
+        currentProject.todos.push(newTodo);
+        renderTodo(newTodo);
+    }
+
+    const isAddLowPriorityImgEl = target.target.matches("section#low button.add img") === true;
+    const isAddLowPriorityButtonEl = target.target.matches("section#low button.add") === true;
+    if(isAddLowPriorityButtonEl || isAddLowPriorityImgEl){
+        const newTodo = createTodoObj("","","","low","");
+        currentProject.todos.push(newTodo);
+        renderTodo(newTodo);
+    }
+
+    const isAddNoPriorityImgEl = target.target.matches("section#none button.add img") === true;
+    const isAddNoPriorityButtonEl = target.target.matches("section#none button.add") === true;
+    if(isAddNoPriorityButtonEl || isAddNoPriorityImgEl){
+        const newTodo = createTodoObj("","","","none","");
+        currentProject.todos.push(newTodo);
+        renderTodo(newTodo);
+    }
+
+    console.log(target.target.tagName);
+});
+
+mainDivEl.addEventListener("focusin",(target)=>{
     const isTitleInputEl = target.target.matches("section#project-info div.hflex input#projectTitle") === true;
     const isReadOnly = target.target.readOnly === true;
     if(isTitleInputEl && isReadOnly){
@@ -91,35 +127,6 @@ mainDivEl.addEventListener("click",(target)=>{
         toggleReadOnly(descTxtAreaEl);
     }
 
-    const isAddHighPriorityEl = target.target.matches("section#high button.add img") === true;
-    if(isAddHighPriorityEl){
-        const newTodo = createTodoObj("","","","high","");
-        currentProject.todos.push(newTodo);
-        renderTodo(newTodo);
-    }
-
-    const isAddMedPriorityEl = target.target.matches("section#med button.add img") === true;
-    if(isAddMedPriorityEl){
-        const newTodo = createTodoObj("","","","med","");
-        currentProject.todos.push(newTodo);
-        renderTodo(newTodo);
-    }
-
-    const isAddLowPriorityEl = target.target.matches("section#low button.add img") === true;
-    if(isAddLowPriorityEl){
-        const newTodo = createTodoObj("","","","low","");
-        currentProject.todos.push(newTodo);
-        renderTodo(newTodo);
-    }
-
-    const isAddNoPriorityEl = target.target.matches("section#none button.add img") === true;
-    if(isAddNoPriorityEl){
-        const newTodo = createTodoObj("","","","none","");
-        currentProject.todos.push(newTodo);
-        renderTodo(newTodo);
-    }
-
-    console.log(target.target.tagName);
 });
 
 mainDivEl.addEventListener("focusout",(target)=>{
