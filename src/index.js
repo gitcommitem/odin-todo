@@ -130,6 +130,7 @@ mainDivEl.addEventListener("focusin",(target)=>{
 });
 
 import { getUpdatedValue } from "./getUpdatedValue"; 
+import { updateProjectList } from "./updateProjectList";
 
 mainDivEl.addEventListener("focusout",(target)=>{
     const currentProjectId = +document.querySelector("div#sidebar li.focus").dataset.projectId;
@@ -142,6 +143,7 @@ mainDivEl.addEventListener("focusout",(target)=>{
         toggleReadOnly(titleInputEl);
         const updatedTitle = getUpdatedValue("input#projectTitle");
         currentProject.title = updatedTitle;
+        updateProjectList(currentProject);
         console.log(currentProject.title);
     }
 
