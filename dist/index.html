@@ -54,9 +54,17 @@
                     <div class="hflex">
                         <h1 id="icon"></h1>
                         <input type="text" id="projectTitle" readonly>
-                        <button type="button">
-                            <img src="./dots-three-bold.svg" alt="Project options icon">
-                        </button>
+                        <div class="option-cont">
+                            <button type="button">
+                                <img src="./dots-three-bold.svg" alt="Project options icon">
+                            </button>
+                            <div class="option-popup hidden">
+                                <ul>
+                                    <li data-action="delete-todos"><img src="./trash-bold.svg" alt="Delete all todos icon">Delete all to-dos</li>
+                                    <li data-action="delete-project"><img src="./warning-octagon-bold.svg" alt="Delete project icon">Delete project</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <h2 id="deadline"></h2>
                     <textarea id="proj-desc"readonly></textarea>

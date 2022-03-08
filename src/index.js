@@ -71,12 +71,31 @@ sidebarEl.addEventListener("click",(target) =>{
 });
 
 import { toggleReadOnly } from "./toggleReadOnly";
+import { toggleHidden } from "./toggleHidden";
 
 const mainDivEl = document.querySelector("div#main");
 mainDivEl.addEventListener("click",(target)=>{
     const currentProjectId = +document.querySelector("div#sidebar li.focus").dataset.projectId;
     const currentProjectIndex = listOfProjects.findIndex(project => project.id === currentProjectId);
     const currentProject = listOfProjects[currentProjectIndex];
+
+    const isProjectOptImgEl = target.target.matches("section#project-info button img") === true;
+    const isProjectOptButtonEl = target.target.matches("section#project-info button") === true;
+    if(isProjectOptButtonEl || isProjectOptImgEl){
+        const optContEl = document.querySelector("section#project-info div.option-popup");
+        toggleHidden(optContEl);
+    };
+
+    const isProjectOptLiEl = target.target.matches("section#project-info div.option-popup li") === true;
+    if(isProjectOptLiEl){
+
+        const deleteAllTodosLiEl = document.querySelector("div.option-popup li[data-action=delete-todos]")
+        if(deleteAllTodosLiEl){
+            removePrevProjTodos();
+            currentProject.todos.length = 0;
+        }
+        
+    };
 
     const isAddHighPriorityImgEl = target.target.matches("section#high button.add img") === true;
     const isAddHighPriorityButtonEl = target.target.matches("section#high button.add") === true;
