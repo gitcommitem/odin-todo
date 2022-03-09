@@ -148,6 +148,8 @@ import { updateProjectList } from "./updateProjectList";
 
 //Update values if changes are made to inputs
 mainDivEl.addEventListener("change",(target)=>{
+    
+    //Updating values for edited project info
     const currentProjectId = +document.querySelector("div#sidebar li.focus").dataset.projectId;
     const currentProjectIndex = listOfProjects.findIndex(project => project.id === currentProjectId);
     const currentProject = listOfProjects[currentProjectIndex];
@@ -163,6 +165,7 @@ mainDivEl.addEventListener("change",(target)=>{
         currentProject.desc = getUpdatedValue(target.target);
     }
 
+    //Updating values for edited todo cards
     const currentTodoId = +target.target.dataset.todoId;
     const currentTodoIndex = currentProject.todos.findIndex(todo => todo.id === currentTodoId);
     const currentTodo = currentProject.todos[currentTodoIndex];
@@ -174,7 +177,11 @@ mainDivEl.addEventListener("change",(target)=>{
         console.log(currentTodo);
 
     };
-    
+
+    const isTodoTxtAreaEl = target.target.matches("div.todo-info textarea") === true;
+    if(isTodoTxtAreaEl){
+        currentTodo.desc = getUpdatedValue(target.target);
+    };
 
     console.log(target);
 });
