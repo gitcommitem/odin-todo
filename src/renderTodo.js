@@ -22,25 +22,29 @@ const renderTodo = (todo) => {
     infoContDivEl.classList.add("todo-info");
     cardDivEl.appendChild(infoContDivEl);
 
-    const titleH1El = document.createElement("h1");
-    titleH1El.classList.add("todo-title");
-    titleH1El.textContent = todo.title;
-    infoContDivEl.appendChild(titleH1El);
+    const titleInputEl = document.createElement("input");
+    titleInputEl.readOnly = true;
+    titleInputEl.classList.add("todo-title");
+    titleInputEl.value = todo.title;
+    infoContDivEl.appendChild(titleInputEl);
 
-    const descPEl = document.createElement("p");
-    descPEl.classList.add("todo-desc");
-    descPEl.textContent = todo.desc;
-    infoContDivEl.appendChild(descPEl);
+    const descTxtAreaEl = document.createElement("textarea");
+    descTxtAreaEl.readOnly = true;
+    descTxtAreaEl.classList.add("todo-desc");
+    descTxtAreaEl.value = todo.desc;
+    infoContDivEl.appendChild(descTxtAreaEl);
 
-    const statusPEl = document.createElement("p");
-    statusPEl.classList.add("status");
-    statusPEl.textContent = todo.status;
-    infoContDivEl.appendChild(statusPEl);
+    const statusInputEl = document.createElement("input");
+    statusInputEl.readOnly = true;
+    statusInputEl.classList.add("status");
+    statusInputEl.value = todo.status;
+    infoContDivEl.appendChild(statusInputEl);
 
-    const duePEl = document.createElement("p");
-    duePEl.classList.add("dueDate");
-    duePEl.textContent = todo.dueDate;
-    infoContDivEl.appendChild(duePEl);
+    const dueInputEl = document.createElement("input");
+    dueInputEl.readOnly = true;
+    dueInputEl.classList.add("dueDate");
+    dueInputEl.value = todo.dueDate;
+    infoContDivEl.appendChild(dueInputEl);
 };
 
 export {renderTodo};
