@@ -27,24 +27,28 @@ const renderTodo = (todo) => {
     titleInputEl.readOnly = true;
     titleInputEl.classList.add("todo-title");
     titleInputEl.value = todo.title;
+    titleInputEl.setAttribute("data-todo-id",`${todo.id}`)
     infoContDivEl.appendChild(titleInputEl);
 
     const descTxtAreaEl = document.createElement("textarea");
     descTxtAreaEl.readOnly = true;
     descTxtAreaEl.classList.add("todo-desc");
     descTxtAreaEl.value = todo.desc;
+    descTxtAreaEl.setAttribute("data-todo-id",`${todo.id}`)
     infoContDivEl.appendChild(descTxtAreaEl);
 
     const statusInputEl = document.createElement("input");
     statusInputEl.readOnly = true;
     statusInputEl.classList.add("status");
     statusInputEl.value = todo.status;
+    statusInputEl.setAttribute("data-todo-id",`${todo.id}`)
     infoContDivEl.appendChild(statusInputEl);
 
     const dueInputEl = document.createElement("input");
     dueInputEl.readOnly = true;
     dueInputEl.classList.add("dueDate");
     dueInputEl.value = todo.dueDate;
+    dueInputEl.setAttribute("data-todo-id",`${todo.id}`)
     infoContDivEl.appendChild(dueInputEl);
 };
 

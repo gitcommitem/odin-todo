@@ -154,16 +154,27 @@ mainDivEl.addEventListener("change",(target)=>{
 
     const isTitleInputEl = target.target.matches("section#project-info div.hflex input#projectTitle") === true;
     if(isTitleInputEl){
-        const updatedTitle = getUpdatedValue("input#projectTitle");
-        currentProject.title = updatedTitle;
+        currentProject.title = getUpdatedValue(target.target);
         updateProjectList(currentProject);
     }
 
     const isDescTxtAreaEl = target.target.matches("section#project-info textarea#proj-desc") === true;
     if(isDescTxtAreaEl){
-        const updatedProjDesc = getUpdatedValue("textarea#proj-desc");
-        currentProject.desc = updatedProjDesc;
+        currentProject.desc = getUpdatedValue(target.target);
     }
+
+    const currentTodoId = +target.target.dataset.todoId;
+    const currentTodoIndex = currentProject.todos.findIndex(todo => todo.id === currentTodoId);
+    const currentTodo = currentProject.todos[currentTodoIndex];
+
+    const isTodoTitleInputEl = target.target.matches("div.todo-info input.todo-title") === true;
+    if(isTodoTitleInputEl){
+        currentTodo.title = getUpdatedValue(target.target);
+        console.log(currentTodoId);
+        console.log(currentTodo);
+
+    };
+    
 
     console.log(target);
 });

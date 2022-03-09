@@ -1,6 +1,5 @@
-const getUpdatedValue = (querySelectorString) => {
-    const targetInputEl = document.querySelector(querySelectorString);
-    return targetInputEl.value;
+const getUpdatedValue = (target) => {
+    return target.value;
 };
 
 export {getUpdatedValue};
