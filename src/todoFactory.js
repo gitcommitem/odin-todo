@@ -1,4 +1,4 @@
-const createTodoObj = (title,desc,dueDate,priority,status) =>{
+const createTodoObj = (title,desc,dueDate,priority,status,targetProject) =>{
 
     if(title === ""){
         title = "Untitled"
@@ -16,7 +16,14 @@ const createTodoObj = (title,desc,dueDate,priority,status) =>{
         status = "Not started"
     };
 
-    return {title,desc,dueDate,priority,status};
+    let id = 0;
+
+    if(targetProject.todos.length !== 0){
+        const lastEntryId = targetProject.todos[targetProject.todos.length-1].id;
+        id = lastEntryId + 1;
+    };
+
+    return {title,desc,dueDate,priority,status,id};
 
 };
 

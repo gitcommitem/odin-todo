@@ -19,12 +19,12 @@ console.log(listOfProjects[0].id);
 import { createTodoObj } from "./todoFactory";
 import { renderTodo } from "./renderTodo";
 
-const test1 = createTodoObj("This is a high priority card","You can drag cards to rearrange order or change their priority","03/01/2022","high","paused");
-const test2 = createTodoObj("This is a medium priority card","You can drag cards to rearrange order or change their priority","03/01/2022","med","paused");
-const test3 = createTodoObj("This is a low priority card","You can drag cards to rearrange order or change their priority","03/01/2022","low","paused");
-const test4 = createTodoObj("This is a card with no priority set","You can drag cards to rearrange order or change their priority","03/01/2022","none","paused");
-const test5 = createTodoObj("","","","none","");
-const test6 = createTodoObj("This is a completed card","You can drag cards to rearrange order or change their priority","03/01/2022","high","completed");
+const test1 = createTodoObj("This is a high priority card","You can drag cards to rearrange order or change their priority","03/01/2022","high","paused",general);
+const test2 = createTodoObj("This is a medium priority card","You can drag cards to rearrange order or change their priority","03/01/2022","med","paused",general);
+const test3 = createTodoObj("This is a low priority card","You can drag cards to rearrange order or change their priority","03/01/2022","low","paused",general);
+const test4 = createTodoObj("This is a card with no priority set","You can drag cards to rearrange order or change their priority","03/01/2022","none","paused",general);
+const test5 = createTodoObj("","","","none","",general);
+const test6 = createTodoObj("This is a completed card","You can drag cards to rearrange order or change their priority","03/01/2022","high","completed",general);
 
 const preloadedTodos = [test1,test2,test3,test4,test5,test6,test4,test4,test5];
 
@@ -100,15 +100,16 @@ mainDivEl.addEventListener("click",(target)=>{
     const isAddHighPriorityImgEl = target.target.matches("section#high button.add img") === true;
     const isAddHighPriorityButtonEl = target.target.matches("section#high button.add") === true;
     if(isAddHighPriorityButtonEl || isAddHighPriorityImgEl){
-        const newTodo = createTodoObj("","","","high","");
+        const newTodo = createTodoObj("","","","high","",currentProject);
         currentProject.todos.push(newTodo);
         renderTodo(newTodo);
+        console.log(currentProject.todos);
     }
 
     const isAddMedPriorityImgEl = target.target.matches("section#med button.add img") === true;
     const isAddMedPriorityButtonEl = target.target.matches("section#med button.add") === true;
     if(isAddMedPriorityButtonEl || isAddMedPriorityImgEl){
-        const newTodo = createTodoObj("","","","med","");
+        const newTodo = createTodoObj("","","","med","",currentProject);
         currentProject.todos.push(newTodo);
         renderTodo(newTodo);
     }
@@ -116,7 +117,7 @@ mainDivEl.addEventListener("click",(target)=>{
     const isAddLowPriorityImgEl = target.target.matches("section#low button.add img") === true;
     const isAddLowPriorityButtonEl = target.target.matches("section#low button.add") === true;
     if(isAddLowPriorityButtonEl || isAddLowPriorityImgEl){
-        const newTodo = createTodoObj("","","","low","");
+        const newTodo = createTodoObj("","","","low","",currentProject);
         currentProject.todos.push(newTodo);
         renderTodo(newTodo);
     }
@@ -124,7 +125,7 @@ mainDivEl.addEventListener("click",(target)=>{
     const isAddNoPriorityImgEl = target.target.matches("section#none button.add img") === true;
     const isAddNoPriorityButtonEl = target.target.matches("section#none button.add") === true;
     if(isAddNoPriorityButtonEl || isAddNoPriorityImgEl){
-        const newTodo = createTodoObj("","","","none","");
+        const newTodo = createTodoObj("","","","none","",currentProject);
         currentProject.todos.push(newTodo);
         renderTodo(newTodo);
     }
