@@ -144,7 +144,7 @@ mainDivEl.addEventListener("focusin",(target)=>{
 import { getUpdatedValue } from "./getUpdatedValue"; 
 import { updateProjectList } from "./updateProjectList";
 
-mainDivEl.addEventListener("focusout",(target)=>{
+mainDivEl.addEventListener("change",(target)=>{
     const currentProjectId = +document.querySelector("div#sidebar li.focus").dataset.projectId;
     const currentProjectIndex = listOfProjects.findIndex(project => project.id === currentProjectId);
     const currentProject = listOfProjects[currentProjectIndex];
