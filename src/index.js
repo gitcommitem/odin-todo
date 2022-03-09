@@ -127,18 +127,19 @@ mainDivEl.addEventListener("click",(target)=>{
 
 //Remove readonly from inputs when focused
 mainDivEl.addEventListener("focusin",(target)=>{
-    const isTitleInputEl = target.target.matches("section#project-info div.hflex input#projectTitle") === true;
     const isReadOnly = target.target.readOnly === true;
-    if(isTitleInputEl && isReadOnly){
-        const titleInputEl = document.querySelector("input#projectTitle");
-        toggleReadOnly(titleInputEl);
+
+    const isInputEl = target.target.matches("div#main input") === true;
+    if(isInputEl && isReadOnly){
+        toggleReadOnly(target.target);
     }
 
-    const isDescTxtAreaEl = target.target.matches("section#project-info textarea#proj-desc") === true;
-    if(isDescTxtAreaEl && isReadOnly){
-        const descTxtAreaEl = document.querySelector("textarea#proj-desc");
-        toggleReadOnly(descTxtAreaEl);
+    const isTxtAreaEl = target.target.matches("div#main textarea") === true;
+    if(isTxtAreaEl && isReadOnly){
+        toggleReadOnly(target.target);
     }
+
+    console.log(target.target);
 
 });
 
@@ -171,17 +172,16 @@ mainDivEl.addEventListener("change",(target)=>{
 mainDivEl.addEventListener("focusout",(target)=>{
     const isReadOnly = target.target.readOnly === true;
 
-    const isTitleInputEl = target.target.matches("section#project-info div.hflex input#projectTitle") === true;
-    if(isTitleInputEl && !isReadOnly){
-        const titleInputEl = document.querySelector("input#projectTitle");
-        toggleReadOnly(titleInputEl);
+    const isInputEl = target.target.matches("div#main input") === true;
+    if(isInputEl && !isReadOnly){
+        toggleReadOnly(target.target);
     }
 
-    const isDescTxtAreaEl = target.target.matches("section#project-info textarea#proj-desc") === true;
-    if(isDescTxtAreaEl && !isReadOnly){
-        const descTxtAreaEl = document.querySelector("textarea#proj-desc");
-        toggleReadOnly(descTxtAreaEl);
+    const isTxtAreaEl = target.target.matches("div#main textarea") === true;
+    if(isTxtAreaEl && !isReadOnly){
+        toggleReadOnly(target.target);
     }
 
-    console.log(target);
+    console.log(target.target);
+
 });
