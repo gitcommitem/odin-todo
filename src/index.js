@@ -125,6 +125,7 @@ mainDivEl.addEventListener("click",(target)=>{
     console.log(target.target.tagName);
 });
 
+//Remove readonly from inputs when focused
 mainDivEl.addEventListener("focusin",(target)=>{
     const isTitleInputEl = target.target.matches("section#project-info div.hflex input#projectTitle") === true;
     const isReadOnly = target.target.readOnly === true;
@@ -144,6 +145,7 @@ mainDivEl.addEventListener("focusin",(target)=>{
 import { getUpdatedValue } from "./getUpdatedValue"; 
 import { updateProjectList } from "./updateProjectList";
 
+//Update values if changes are made to inputs
 mainDivEl.addEventListener("change",(target)=>{
     const currentProjectId = +document.querySelector("div#sidebar li.focus").dataset.projectId;
     const currentProjectIndex = listOfProjects.findIndex(project => project.id === currentProjectId);
@@ -151,20 +153,34 @@ mainDivEl.addEventListener("change",(target)=>{
 
     const isTitleInputEl = target.target.matches("section#project-info div.hflex input#projectTitle") === true;
     if(isTitleInputEl){
-        const titleInputEl = document.querySelector("input#projectTitle");
-        toggleReadOnly(titleInputEl);
         const updatedTitle = getUpdatedValue("input#projectTitle");
         currentProject.title = updatedTitle;
         updateProjectList(currentProject);
-        console.log(currentProject.title);
     }
 
     const isDescTxtAreaEl = target.target.matches("section#project-info textarea#proj-desc") === true;
     if(isDescTxtAreaEl){
-        const descTxtAreaEl = document.querySelector("textarea#proj-desc");
-        toggleReadOnly(descTxtAreaEl);
         const updatedProjDesc = getUpdatedValue("textarea#proj-desc");
         currentProject.desc = updatedProjDesc;
+    }
+
+    console.log(target);
+});
+
+//Make inputs readonly again when focus is lost
+mainDivEl.addEventListener("focusout",(target)=>{
+    const isReadOnly = target.target.readOnly === true;
+
+    const isTitleInputEl = target.target.matches("section#project-info div.hflex input#projectTitle") === true;
+    if(isTitleInputEl && !isReadOnly){
+        const titleInputEl = document.querySelector("input#projectTitle");
+        toggleReadOnly(titleInputEl);
+    }
+
+    const isDescTxtAreaEl = target.target.matches("section#project-info textarea#proj-desc") === true;
+    if(isDescTxtAreaEl && !isReadOnly){
+        const descTxtAreaEl = document.querySelector("textarea#proj-desc");
+        toggleReadOnly(descTxtAreaEl);
     }
 
     console.log(target);
