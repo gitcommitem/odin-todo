@@ -7,31 +7,23 @@ import { renderProject } from "./renderProject";
 import { renderProjectList } from "./renderProjectList";
 import { focusProject } from "./focusProject";
 
+import { createTodoObj } from "./todoFactory";
+import { renderTodo } from "./renderTodo";
+
 const general = createProject("📨","General","General to-dos","",listOfProjects);
 listOfProjects.push(general);
 renderProjectList(general);
 focusProject(general);
 renderProject(general);
 
-console.log(listOfProjects.length);
-console.log(listOfProjects[0].id);
-
-import { createTodoObj } from "./todoFactory";
-import { renderTodo } from "./renderTodo";
-
-const test1 = createTodoObj("This is a high priority card","You can drag cards to rearrange order or change their priority","03/01/2022","high","paused",general);
-const test2 = createTodoObj("This is a medium priority card","You can drag cards to rearrange order or change their priority","03/01/2022","med","paused",general);
-const test3 = createTodoObj("This is a low priority card","You can drag cards to rearrange order or change their priority","03/01/2022","low","paused",general);
-const test4 = createTodoObj("This is a card with no priority set","You can drag cards to rearrange order or change their priority","03/01/2022","none","paused",general);
-const test5 = createTodoObj("","","","none","",general);
-const test6 = createTodoObj("This is a completed card","You can drag cards to rearrange order or change their priority","03/01/2022","high","completed",general);
-
-const preloadedTodos = [test1,test2,test3,test4,test5,test6,test4,test4,test5];
-
-preloadedTodos.forEach((todo)=>{
-    general.todos.push(todo);
-    console.log(general.todos);
-});
+const test1 = createTodoObj("This is a high priority card","You can drag cards to rearrange them or change their priority","","high","",general);
+general.todos.push(test1);
+const test2 = createTodoObj("This is a medium priority card","You can drag cards to rearrange them or change their priority","","med","",general);
+general.todos.push(test2);
+const test3 = createTodoObj("This is a low priority card","You can drag cards to rearrange them or change their priority","","low","",general);
+general.todos.push(test3);
+const test4 = createTodoObj("This is a card with no priority","You can drag cards to rearrange them or change their priority","","none","",general);
+general.todos.push(test4);
 
 general.todos.forEach(todo => {
     renderTodo(todo);
