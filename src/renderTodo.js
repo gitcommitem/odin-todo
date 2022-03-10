@@ -44,6 +44,26 @@ const renderTodo = (todo) => {
     statusInputEl.setAttribute("data-todo-id",`${todo.id}`)
     infoContDivEl.appendChild(statusInputEl);
 
+    const statusSelectEl = document.createElement("select");
+    statusSelectEl.classList.add("status");
+    infoContDivEl.appendChild(statusSelectEl);
+
+    const createOptionEl = (value,statusSelectEl) =>{
+        const optionEl = document.createElement("option");
+        optionEl.setAttribute("data-todo-id",`${todo.id}`)
+        optionEl.value = value;
+        optionEl.textContent = value;
+        statusSelectEl.appendChild(optionEl);
+    };
+
+    createOptionEl("Not started",statusSelectEl);
+    createOptionEl("In progress",statusSelectEl);
+    createOptionEl("Paused",statusSelectEl);
+    createOptionEl("Completed",statusSelectEl);
+
+    const selectedOptionEl = document.querySelector(`option[data-todo-id="${todo.id}"][value="${todo.status}"]`);
+    selectedOptionEl.selected = true;
+    
     const dueInputEl = document.createElement("input");
     dueInputEl.readOnly = true;
     dueInputEl.classList.add("dueDate");
