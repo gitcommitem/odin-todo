@@ -33,6 +33,11 @@ import { removePrevProjTodos } from "./removePrevProjTodos";
 
 const sidebarEl = document.querySelector("div#sidebar");
 sidebarEl.addEventListener("click",(target) =>{
+
+    const projectOptContEl = document.querySelector("section#project-info div.option-popup");
+    if(projectOptContEl.classList.contains("hidden")===false){
+        toggleHidden(projectOptContEl);
+    }
     
     const isAddNewProjectButtonEl = target.target.matches("button") === true;
     if(isAddNewProjectButtonEl){
@@ -71,11 +76,15 @@ mainDivEl.addEventListener("click",(target)=>{
     const currentProjectIndex = listOfProjects.findIndex(project => project.id === currentProjectId);
     const currentProject = listOfProjects[currentProjectIndex];
 
+    const projectOptContEl = document.querySelector("section#project-info div.option-popup");
+    if(projectOptContEl.classList.contains("hidden")===false){
+        toggleHidden(projectOptContEl);
+    }
+
     const isProjectOptImgEl = target.target.matches("section#project-info button img") === true;
     const isProjectOptButtonEl = target.target.matches("section#project-info button") === true;
     if(isProjectOptButtonEl || isProjectOptImgEl){
-        const optContEl = document.querySelector("section#project-info div.option-popup");
-        toggleHidden(optContEl);
+        toggleHidden(projectOptContEl);
     };
 
     const isProjectOptLiEl = target.target.matches("section#project-info div.option-popup li") === true;
@@ -86,7 +95,6 @@ mainDivEl.addEventListener("click",(target)=>{
             removePrevProjTodos();
             currentProject.todos.length = 0;
         }
-        
     };
 
     const isAddHighPriorityImgEl = target.target.matches("section#high button.add img") === true;
@@ -148,7 +156,7 @@ import { updateProjectList } from "./updateProjectList";
 
 //Update values if changes are made to inputs
 mainDivEl.addEventListener("change",(target)=>{
-    
+
     //Updating values for edited project info
     const currentProjectId = +document.querySelector("div#sidebar li.focus").dataset.projectId;
     const currentProjectIndex = listOfProjects.findIndex(project => project.id === currentProjectId);
