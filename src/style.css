@@ -28,7 +28,7 @@
          url('./fonts/manrope-v11-latin-800.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
   }
 
-:root,input,button,textarea{
+:root,input,button,textarea,select{
     font-family: 'Manrope', sans-serif;
 }
 
@@ -371,6 +371,12 @@ textarea.todo-desc{
 }
 
 input.status{
-    text-transform: capitalize;
+    width: 100%;
 }
 
+select.status{
+    font-size: 1rem;
+    background-color: inherit;
+    border: none;
+    width: 100%;
+}

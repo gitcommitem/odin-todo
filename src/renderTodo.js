@@ -45,7 +45,8 @@ const renderTodo = (todo) => {
     infoContDivEl.appendChild(statusInputEl);
 
     const statusSelectEl = document.createElement("select");
-    statusSelectEl.classList.add("status");
+    statusSelectEl.setAttribute("data-todo-id",`${todo.id}`)
+    statusSelectEl.classList.add("status","hidden");
     infoContDivEl.appendChild(statusSelectEl);
 
     const createOptionEl = (value,statusSelectEl) =>{
@@ -64,12 +65,34 @@ const renderTodo = (todo) => {
     const selectedOptionEl = document.querySelector(`option[data-todo-id="${todo.id}"][value="${todo.status}"]`);
     selectedOptionEl.selected = true;
     
-    const dueInputEl = document.createElement("input");
-    dueInputEl.readOnly = true;
-    dueInputEl.classList.add("dueDate");
-    dueInputEl.value = todo.dueDate;
-    dueInputEl.setAttribute("data-todo-id",`${todo.id}`)
-    infoContDivEl.appendChild(dueInputEl);
+    const dueTxtInputEl = document.createElement("input");
+    dueTxtInputEl.readOnly = true;
+    dueTxtInputEl.classList.add("dueDate");
+    dueTxtInputEl.value = todo.dueDate;
+    dueTxtInputEl.setAttribute("data-todo-id",`${todo.id}`)
+    infoContDivEl.appendChild(dueTxtInputEl);
+
+    const dueDateInputEl = document.createElement("input");
+    dueDateInputEl.type = "date";
+    dueDateInputEl.classList.add("dueDate","hidden");
+    dueDateInputEl.value = todo.dueDate;
+    dueDateInputEl.setAttribute("data-todo-id",`${todo.id}`)
+    infoContDivEl.appendChild(dueDateInputEl);
+
+    const checkboxEl = document.createElement("input");
+    checkboxEl.type = "checkbox";
+    checkboxEl.name = "noDue";
+    checkboxEl.id = "noDue";
+    checkboxEl.classList.add("dueDate","hidden");
+    checkboxEl.setAttribute("data-todo-id",`${todo.id}`)
+    infoContDivEl.appendChild(checkboxEl);
+
+    const labelEl = document.createElement("label");
+    labelEl.for = "noDue";
+    labelEl.textContent = "No due date";
+    labelEl.classList.add("dueDate","hidden")
+    labelEl.setAttribute("data-todo-id",`${todo.id}`)
+    infoContDivEl.appendChild(labelEl);
 };
 
 export {renderTodo};

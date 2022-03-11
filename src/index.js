@@ -147,6 +147,29 @@ mainDivEl.addEventListener("focusin",(target)=>{
         toggleReadOnly(target.target);
     }
 
+    const currentTodoId = +target.target.dataset.todoId;
+
+    const isStatusInputEl = target.target.matches("input.status") === true;
+    if(isStatusInputEl && isReadOnly){
+        const statusInputEl = document.querySelector(`input.status[data-todo-id="${currentTodoId}"]`);
+        statusInputEl.classList.add("hidden");
+        const statusSelectEl = document.querySelector(`select.status[data-todo-id="${currentTodoId}"]`);
+        statusSelectEl.classList.remove("hidden");
+
+    }
+
+    const isDueInputEl = target.target.matches("input.dueDate") === true;
+    if(isDueInputEl && isReadOnly){
+        const dueInputEl = document.querySelector(`input.dueDate[data-todo-id="${currentTodoId}"]`);
+        dueInputEl.classList.add("hidden");
+        const dueDateInputEl = document.querySelector(`input.dueDate[data-todo-id="${currentTodoId}"][type="date"]`);
+        dueDateInputEl.classList.remove("hidden");
+        const checkboxEl = document.querySelector(`input.dueDate[data-todo-id="${currentTodoId}"][type="checkbox"]`);
+        checkboxEl.classList.remove("hidden");
+        const labelEl = document.querySelector(`label.dueDate[data-todo-id="${currentTodoId}"]`);
+        labelEl.classList.remove("hidden");
+    }
+
     console.log(target.target);
 
 });
