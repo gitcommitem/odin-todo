@@ -155,7 +155,7 @@ mainDivEl.addEventListener("focusin",(target)=>{
         statusInputEl.classList.add("hidden");
         const statusSelectEl = document.querySelector(`select.status[data-todo-id="${currentTodoId}"]`);
         statusSelectEl.classList.remove("hidden");
-
+        statusSelectEl.size=4;
     }
 
     const isDueInputEl = target.target.matches("input.dueDate") === true;
@@ -204,9 +204,19 @@ mainDivEl.addEventListener("change",(target)=>{
     const isTodoTitleInputEl = target.target.matches("div.todo-info input.todo-title") === true;
     if(isTodoTitleInputEl){
         currentTodo.title = getUpdatedValue(target.target);
-        console.log(currentTodoId);
-        console.log(currentTodo);
+    };
 
+    const isStatusSelectEl = target.target.matches("select.status") === true;
+    if(isStatusSelectEl){
+        currentTodo.status = getUpdatedValue(target.target);
+
+        const statusSelectEl = document.querySelector(`select.status[data-todo-id="${currentTodoId}"]`);
+        statusSelectEl.classList.add("hidden");
+
+        const statusInputEl = document.querySelector(`input.status[data-todo-id="${currentTodoId}"]`);
+        statusInputEl.value = currentTodo.status;
+        statusInputEl.classList.remove("hidden");
+ 
     };
 
     const isTodoTxtAreaEl = target.target.matches("div.todo-info textarea") === true;
