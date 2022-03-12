@@ -103,6 +103,7 @@ h1#icon{
     margin-right: 0.5rem;
 }
 
+/*
 h1#icon:hover{
     cursor: pointer;
     position: relative;
@@ -113,6 +114,7 @@ h1#icon:hover{
     background-color: white;
     border-radius: 0.2rem;
 }
+*/
 
 h1.kicker{
     font-weight: 800;
@@ -221,8 +223,7 @@ section#filter{
 
 section#todos{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: repeat(autofit); 
+    grid-template-columns: repeat(auto-fit,minmax(30ch,1fr));
     gap: 2rem;
 }
 
@@ -286,14 +287,16 @@ div.todo-item.completed>div.color-bar{
 }
 
 section#none{
-    grid-column: 1/4;
+
 }
 
+/*
 section#none>div.grid-cont{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
 }
+*/
 
 div.modal-overlay{
     position: fixed;
