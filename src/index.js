@@ -206,6 +206,11 @@ mainDivEl.addEventListener("change",(target)=>{
         currentTodo.title = getUpdatedValue(target.target);
     };
 
+    const isTodoTxtAreaEl = target.target.matches("div.todo-info textarea") === true;
+    if(isTodoTxtAreaEl){
+        currentTodo.desc = getUpdatedValue(target.target);
+    };
+
     const isStatusSelectEl = target.target.matches("select.status") === true;
     if(isStatusSelectEl){
         currentTodo.status = getUpdatedValue(target.target);
@@ -219,10 +224,47 @@ mainDivEl.addEventListener("change",(target)=>{
  
     };
 
-    const isTodoTxtAreaEl = target.target.matches("div.todo-info textarea") === true;
-    if(isTodoTxtAreaEl){
-        currentTodo.desc = getUpdatedValue(target.target);
-    };
+    const isDueInputEl = target.target.matches("input.dueDate[type='date']") === true;
+    if(isDueInputEl){
+
+        const dueDateInputEl = document.querySelector(`input.dueDate[data-todo-id="${currentTodoId}"][type="date"]`);
+        currentTodo.dueDate = getUpdatedValue(target.target);
+        dueDateInputEl.classList.add("hidden");
+
+        const dueInputEl = document.querySelector(`input.dueDate[data-todo-id="${currentTodoId}"]`);
+        dueInputEl.value = `Due on ${currentTodo.dueDate}`;
+        dueInputEl.classList.remove("hidden");
+
+        const checkboxEl = document.querySelector(`input.dueDate[data-todo-id="${currentTodoId}"][type="checkbox"]`);
+        checkboxEl.classList.add("hidden");
+        const labelEl = document.querySelector(`label.dueDate[data-todo-id="${currentTodoId}"]`);
+        labelEl.classList.add("hidden");
+    }
+
+    const isDueCheckBoxEl = target.target.matches("input.dueDate[type='checkbox']") === true;
+    if(isDueCheckBoxEl){
+        const checkboxEl = document.querySelector(`input.dueDate[data-todo-id="${currentTodoId}"][type="checkbox"]`);
+        const dueDateInputEl = document.querySelector(`input.dueDate[data-todo-id="${currentTodoId}"][type="date"]`);
+
+        if(checkboxEl.checked){
+            dueDateInputEl.disabled = true;
+            currentTodo.dueDate = "No due date";
+            
+            const dueInputEl = document.querySelector(`input.dueDate[data-todo-id="${currentTodoId}"]`);
+            dueInputEl.value = currentTodo.dueDate;
+            dueInputEl.classList.remove("hidden");
+    
+            dueDateInputEl.classList.add("hidden");
+            checkboxEl.classList.add("hidden");
+    
+            const labelEl = document.querySelector(`label.dueDate[data-todo-id="${currentTodoId}"]`);
+            labelEl.classList.add("hidden");
+    
+        }else{
+            dueDateInputEl.disabled = false;
+        }
+
+    }
 
     console.log(target);
 });

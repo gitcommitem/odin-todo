@@ -89,6 +89,11 @@ const renderTodo = (todo) => {
     checkboxEl.classList.add("dueDate","hidden");
     checkboxEl.setAttribute("data-todo-id",`${todo.id}`)
     infoContDivEl.appendChild(checkboxEl);
+    
+    if(todo.dueDate === "No due date"){
+        checkboxEl.checked = true;
+        dueDateInputEl.disabled = true;
+    }
 
     const labelEl = document.createElement("label");
     labelEl.for = "noDue";
