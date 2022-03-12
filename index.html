@@ -39,7 +39,7 @@
             </button>
             <ul id="projects">
             </ul>
-            <p>Settings</p>
+            <p class="hidden">Settings</p>
         </div>
         <div id="main">
             <div class="modal-overlay hidden">
@@ -53,7 +53,7 @@
                 <section class="vflex" id="project-info">
                     <div class="hflex">
                         <h1 id="icon"></h1>
-                        <input type="text" id="projectTitle" readonly>
+                        <input type="text" id="projectTitle" placeholder="Untitled" readonly>
                         <div class="option-cont">
                             <button type="button">
                                 <img src="./dots-three-bold.svg" alt="Project options icon">
@@ -66,10 +66,15 @@
                             </div>
                         </div>
                     </div>
-                    <h2 id="deadline"></h2>
-                    <textarea id="proj-desc"readonly></textarea>
+                    <input type="text" id="deadline" placeholder="Click to add a deadline" readonly>
+                    <div class="deadline-cont hflex hidden">
+                        <input type="date">
+                        <input type="checkbox">
+                        <label for="deadline">No deadline for this project</label>
+                    </div>
+                    <textarea id="proj-desc" placeholder="Click to add notes/comments for this project" readonly></textarea>
                 </section>
-                <section class="hflex" id="filter">
+                <section class="hflex hidden" id="filter">
                     <h3>Filter for</h3>
                     <ul class="hflex" id="priority">
                         <li>High Priority</li>
@@ -89,7 +94,7 @@
                         <div class="hflex">
                             <h1 class="kicker">High Priority</h1>
                             <button type="button">
-                                <img src="./dots-three-bold.svg" alt="To-do options icon">
+                                <img class="hidden" src="./dots-three-bold.svg" alt="To-do options icon">
                             </button>
                             <button class="add" type="button">
                                 <img src="./plus-bold.svg" alt="Add new to-do icon">
@@ -101,7 +106,7 @@
                         <div class="hflex">
                             <h1 class="kicker">Medium Priority</h1>
                             <button type="button">
-                                <img src="./dots-three-bold.svg" alt="To-do options icon">
+                                <img class="hidden" src="./dots-three-bold.svg" alt="To-do options icon">
                             </button>
                             <button class="add" type="button">
                                 <img src="./plus-bold.svg" alt="Add new to-do icon">
@@ -112,7 +117,7 @@
                         <div class="hflex">
                             <h1 class="kicker">Low Priority</h1>
                             <button type="button">
-                                <img src="./dots-three-bold.svg" alt="To-do options icon">
+                                <img class="hidden" src="./dots-three-bold.svg" alt="To-do options icon">
                             </button>
                             <button class="add" type="button">
                                 <img src="./plus-bold.svg" alt="Add new to-do icon">
@@ -123,7 +128,7 @@
                         <div class="hflex">
                             <h1 class="kicker">No Priority Set</h1>
                             <button type="button">
-                                <img src="./dots-three-bold.svg" alt="To-do options icon">
+                                <img class="hidden" src="./dots-three-bold.svg" alt="To-do options icon">
                             </button>
                             <button class="add" type="button">
                                 <img src="./plus-bold.svg" alt="Add new to-do icon">
