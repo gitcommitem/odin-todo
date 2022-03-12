@@ -1,6 +1,8 @@
 import "./style.css";
-
+let store = require('store');
 const listOfProjects = [];
+store.set("projects",listOfProjects);
+console.log(store.get("projects"));
 
 import { createProject } from "./projectFactory";
 import { renderProject } from "./renderProject";
@@ -12,6 +14,8 @@ import { renderTodo } from "./renderTodo";
 
 const general = createProject("📨","General","General to-dos","",listOfProjects);
 listOfProjects.push(general);
+store.set("projects",listOfProjects);
+console.log(store.get("projects"));
 renderProjectList(general);
 focusProject(general);
 renderProject(general);
@@ -185,6 +189,13 @@ mainDivEl.addEventListener("focusin",(target)=>{
     if(isTxtAreaEl && isReadOnly){
         toggleReadOnly(target.target);
     }
+
+     //Updating values for edited project info
+     const currentProjectId = +document.querySelector("div#sidebar li.focus").dataset.projectId;
+     const currentProjectIndex = listOfProjects.findIndex(project => project.id === currentProjectId);
+     const currentProject = listOfProjects[currentProjectIndex];
+
+
 
     const currentTodoId = +target.target.dataset.todoId;
 
