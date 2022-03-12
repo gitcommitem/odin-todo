@@ -249,10 +249,6 @@ section#todos>section>div.hflex>button:hover{
     height: fit-content;
 }
 
-.todo-item.none{
-    margin-bottom: 0;
-}
-
 div.todo-item.completed{
     opacity: 0.3;
 }
