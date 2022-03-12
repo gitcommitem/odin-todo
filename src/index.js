@@ -87,14 +87,25 @@ mainDivEl.addEventListener("click",(target)=>{
         toggleHidden(projectOptContEl);
     };
 
-    const isProjectOptLiEl = target.target.matches("section#project-info div.option-popup li") === true;
-    if(isProjectOptLiEl){
-
-        const deleteAllTodosLiEl = document.querySelector("div.option-popup li[data-action=delete-todos]")
-        if(deleteAllTodosLiEl){
+    const isDeleteAllTodosLiEl = target.target.matches("section#project-info div.option-popup li#delete-todos") === true;
+    if(isDeleteAllTodosLiEl){
             removePrevProjTodos();
             currentProject.todos.length = 0;
-        }
+            console.log(target);
+    };
+
+    const isDeleteProjectLiEl = target.target.matches("section#project-info div.option-popup li#delete-project") === true;
+    if(isDeleteProjectLiEl){
+        listOfProjects.splice(currentProjectIndex,1);
+        const targetProjectLiEl = document.querySelector(`li[data-project-id="${currentProjectId}"]`)
+        targetProjectLiEl.remove();
+        focusProject(listOfProjects[0]);
+        renderProject(listOfProjects[0]);
+        listOfProjects[0].todos.forEach(todo=>{
+            renderTodo(todo);
+        });
+        console.log(listOfProjects);
+  
     };
 
     const isAddHighPriorityImgEl = target.target.matches("section#high button.add img") === true;
@@ -249,7 +260,7 @@ mainDivEl.addEventListener("change",(target)=>{
         if(checkboxEl.checked){
             dueDateInputEl.disabled = true;
             currentTodo.dueDate = "No due date";
-            
+
             const dueInputEl = document.querySelector(`input.dueDate[data-todo-id="${currentTodoId}"]`);
             dueInputEl.value = currentTodo.dueDate;
             dueInputEl.classList.remove("hidden");
