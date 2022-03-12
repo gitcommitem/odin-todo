@@ -32,18 +32,6 @@ const createProject = (icon,title,desc,deadline,listOfProjects) => {
         icon = iconList[randomIcon];
     };
 
-    if(title === ""){
-        title = "Untitled"
-    };
-
-    if(desc === ""){
-        desc = "Click here to add comments/notes"
-    };
-
-    if(deadline === ""){
-        deadline = "Click here to set a deadline"
-    };
-
     let todos = [];
     let id = 0;
 

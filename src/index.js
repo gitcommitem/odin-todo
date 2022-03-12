@@ -16,13 +16,13 @@ renderProjectList(general);
 focusProject(general);
 renderProject(general);
 
-const test1 = createTodoObj("This is a high priority card","You can drag cards to rearrange them or change their priority","","high","",general);
+const test1 = createTodoObj("This is a high priority card","","","high","",general);
 general.todos.push(test1);
-const test2 = createTodoObj("This is a medium priority card","You can drag cards to rearrange them or change their priority","","med","",general);
+const test2 = createTodoObj("This is a medium priority card","","","med","",general);
 general.todos.push(test2);
-const test3 = createTodoObj("This is a low priority card","You can drag cards to rearrange them or change their priority","","low","",general);
+const test3 = createTodoObj("This is a low priority card","","","low","",general);
 general.todos.push(test3);
-const test4 = createTodoObj("This is a card with no priority","You can drag cards to rearrange them or change their priority","","none","",general);
+const test4 = createTodoObj("This is a card with no priority","","","none","",general);
 general.todos.push(test4);
 
 general.todos.forEach(todo => {

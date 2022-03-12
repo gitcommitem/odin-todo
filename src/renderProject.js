@@ -6,8 +6,8 @@ const renderProject = (project) => {
     const titleInputEl = document.querySelector("input#projectTitle");
     titleInputEl.value = project.title;
 
-    const deadlineH2EL = document.querySelector("h2#deadline");
-    deadlineH2EL.textContent = project.deadline;
+    const deadlineH2EL = document.querySelector("input#deadline");
+    deadlineH2EL.value = project.deadline;
 
     const descTextAreaEL = document.querySelector("textarea#proj-desc");
     descTextAreaEL.value = project.desc;

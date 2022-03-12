@@ -24,6 +24,7 @@ const renderTodo = (todo) => {
     cardDivEl.appendChild(infoContDivEl);
 
     const titleInputEl = document.createElement("input");
+    titleInputEl.placeholder = "Untitled"
     titleInputEl.readOnly = true;
     titleInputEl.classList.add("todo-title");
     titleInputEl.value = todo.title;
@@ -31,6 +32,7 @@ const renderTodo = (todo) => {
     infoContDivEl.appendChild(titleInputEl);
 
     const descTxtAreaEl = document.createElement("textarea");
+    descTxtAreaEl.placeholder = "Click to add comments/notes for this todo"
     descTxtAreaEl.readOnly = true;
     descTxtAreaEl.classList.add("todo-desc");
     descTxtAreaEl.value = todo.desc;
@@ -66,6 +68,7 @@ const renderTodo = (todo) => {
     selectedOptionEl.selected = true;
     
     const dueTxtInputEl = document.createElement("input");
+    dueTxtInputEl.placeholder = "Click to add a due date"
     dueTxtInputEl.readOnly = true;
     dueTxtInputEl.classList.add("dueDate");
     dueTxtInputEl.value = todo.dueDate;
