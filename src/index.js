@@ -48,6 +48,11 @@ sidebarEl.addEventListener("click",(target) =>{
         focusProject(newProj);
         renderProject(newProj);
         removePrevProjTodos();
+
+        const emptyStateDivEl = document.querySelector("div.empty-state");
+        if(emptyStateDivEl.classList.contains("hidden") === false){
+            emptyStateDivEl.classList.add("hidden");
+        }
     };
 
     const isProjectLiEl = target.target.matches("li[data-project-id]") === true;
@@ -72,6 +77,21 @@ import { toggleHidden } from "./toggleHidden";
 
 const mainDivEl = document.querySelector("div#main");
 mainDivEl.addEventListener("click",(target)=>{
+
+    const isAddNewProjectButtonEl = target.target.matches("div.empty-state button") === true;
+    if(isAddNewProjectButtonEl){
+        const newProj = createProject("","","","",listOfProjects);
+        listOfProjects.push(newProj);
+        console.log(newProj);
+        renderProjectList(newProj);
+        focusProject(newProj);
+        renderProject(newProj);
+        removePrevProjTodos();
+        
+        const emptyStateDivEl = document.querySelector("div.empty-state");
+        emptyStateDivEl.classList.add("hidden");
+    };
+
     const currentProjectId = +document.querySelector("div#sidebar li.focus").dataset.projectId;
     const currentProjectIndex = listOfProjects.findIndex(project => project.id === currentProjectId);
     const currentProject = listOfProjects[currentProjectIndex];
@@ -99,11 +119,19 @@ mainDivEl.addEventListener("click",(target)=>{
         listOfProjects.splice(currentProjectIndex,1);
         const targetProjectLiEl = document.querySelector(`li[data-project-id="${currentProjectId}"]`)
         targetProjectLiEl.remove();
-        focusProject(listOfProjects[0]);
-        renderProject(listOfProjects[0]);
-        listOfProjects[0].todos.forEach(todo=>{
-            renderTodo(todo);
-        });
+
+        if(listOfProjects.length === 0){
+            const emptyStateDivEl = document.querySelector("div.empty-state");
+            emptyStateDivEl.classList.remove("hidden");
+        }
+        else{
+            focusProject(listOfProjects[0]);
+            renderProject(listOfProjects[0]);
+            listOfProjects[0].todos.forEach(todo=>{
+                renderTodo(todo);
+            });
+        }
+
         console.log(listOfProjects);
   
     };

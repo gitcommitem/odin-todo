@@ -286,10 +286,6 @@ div.todo-item.completed>div.color-bar{
     padding: 1rem;
 }
 
-section#none{
-
-}
-
 /*
 section#none>div.grid-cont{
     display: grid;
@@ -298,10 +294,10 @@ section#none>div.grid-cont{
 }
 */
 
-div.modal-overlay{
+div.empty-state{
     position: fixed;
     top:0;
-    background-color: rgba(8, 8, 8, 0.7);
+    background-color: #fafafa;
     width: 100vw;
     min-height: 100vh;
     z-index: 1;
@@ -310,10 +306,7 @@ div.modal-overlay{
 }
 
 div.modal{
-    background-color: white;
-    padding: 2rem;
     width: 55ch;
-    height: fit-content;
 }
 
 textarea{
