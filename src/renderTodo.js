@@ -71,7 +71,11 @@ const renderTodo = (todo) => {
     dueTxtInputEl.placeholder = "Click to add a due date"
     dueTxtInputEl.readOnly = true;
     dueTxtInputEl.classList.add("dueDate");
-    dueTxtInputEl.value = todo.dueDate;
+    if(todo.dueDate === "" || todo.dueDate === "No due date"){
+        dueTxtInputEl.value = todo.dueDate;
+    }else{
+        dueTxtInputEl.value = `Due on ${todo.dueDate}`;
+    };
     dueTxtInputEl.setAttribute("data-todo-id",`${todo.id}`)
     infoContDivEl.appendChild(dueTxtInputEl);
 
