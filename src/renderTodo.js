@@ -3,7 +3,7 @@ const renderTodo = (todo) => {
     cardDivEl.classList.add("todo-item",`${todo.priority}`);
     cardDivEl.setAttribute("data-todo-id",`${todo.id}`)
 
-    if(todo.status === "completed"){
+    if(todo.status === "Completed"){
         cardDivEl.classList.add("completed");
     };
 

@@ -398,3 +398,7 @@ select.status{
     border: none;
     width: 100%;
 }
+
+div.todo-item.completed:hover{
+    opacity: 1;
+}

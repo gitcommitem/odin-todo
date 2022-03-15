@@ -392,6 +392,13 @@ mainDivEl.addEventListener("change",(target)=>{
         currentTodo.status = getUpdatedValue(target.target);
         store.set("projects",listOfProjects);
 
+        const targetTodoEl = document.querySelector(`div.todo-item[data-todo-id="${currentTodoId}"]`);
+        if(currentTodo.status === "Completed"){
+            targetTodoEl.classList.add("completed");
+        }else{
+            targetTodoEl.classList.remove("completed");
+        }
+
         const statusSelectEl = document.querySelector(`select.status[data-todo-id="${currentTodoId}"]`);
         statusSelectEl.classList.add("hidden");
 
