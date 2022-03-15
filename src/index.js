@@ -149,6 +149,36 @@ mainDivEl.addEventListener("click",(target)=>{
         toggleHidden(projectOptContEl);
     };
 
+    const statusSelectEl = document.querySelectorAll(`select.status`);
+    statusSelectEl.forEach(selectEl =>{
+        if(selectEl.classList.contains("hidden")===false){
+            const targetTodoId = +selectEl.dataset.todoId;
+            selectEl.classList.add("hidden");
+    
+            const statusInputEl = document.querySelector(`input.status[data-todo-id="${targetTodoId}"]`);
+            statusInputEl.classList.remove("hidden");
+        };
+    });
+
+    const dueDateInputEl = document.querySelectorAll("input.dueDate[type='date']");
+    dueDateInputEl.forEach(dateInputEl =>{
+        if(dateInputEl.classList.contains("hidden")===false){
+            const targetTodoId = +dateInputEl.dataset.todoId;
+            dateInputEl.classList.add("hidden");
+
+            const checkboxEl = document.querySelector(`input.dueDate[type="checkbox"][data-todo-id="${targetTodoId}"]`);
+            checkboxEl.classList.add("hidden");
+
+            const labelEl = document.querySelector(`label.dueDate[data-todo-id="${targetTodoId}"]`);
+            labelEl.classList.add("hidden");
+
+            const inputEl = document.querySelector(`input.dueDate[data-todo-id="${targetTodoId}"]`);
+            inputEl.classList.remove("hidden");
+        }
+    })
+
+ 
+
     const isDeleteAllTodosLiEl = target.target.matches("section#project-info div.option-popup li#delete-todos") === true;
     if(isDeleteAllTodosLiEl){
             removePrevProjTodos();
