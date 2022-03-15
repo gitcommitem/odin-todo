@@ -1,5 +1,5 @@
 # TOP Javascript Course Project - To Do List
-02/25/2022 ~
+02/25/2022 ~ 03/15/2022
 
 ## Objectives
 Using webpack, create a to do list app. You can use external libraries.
@@ -23,3 +23,4 @@ Your user interface should at least have the following:
 Using Web Storage API allow the user to store their to-do data locally.
 
 ## Learnings
+I ended up cutting out quite a few features but would like to revist this project later. Getting local storage set with store.js was incredibly quick and easy.
