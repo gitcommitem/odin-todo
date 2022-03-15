@@ -160,7 +160,16 @@ div#sidebar{
     max-width: 13vw;
 }
 
+div#sidebar button{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
 div#sidebar li{
+    margin-left: auto;
+    margin-right: auto;
     width: 100%;
     padding: 0.5rem;
     margin-bottom: 0.5rem;
