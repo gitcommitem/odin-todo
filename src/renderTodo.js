@@ -105,6 +105,17 @@ const renderTodo = (todo) => {
     labelEl.classList.add("dueDate","hidden")
     labelEl.setAttribute("data-todo-id",`${todo.id}`)
     infoContDivEl.appendChild(labelEl);
+
+    const deleteButtonEl = document.createElement("button");
+    deleteButtonEl.classList.add("delete");
+    deleteButtonEl.setAttribute("data-todo-id",`${todo.id}`)
+    infoContDivEl.appendChild(deleteButtonEl);
+
+    const deleteImgEl = document.createElement("img");
+    deleteImgEl.classList.add("delete")
+    deleteImgEl.src = "./trash-bold.svg";
+    deleteImgEl.setAttribute("data-todo-id",`${todo.id}`)
+    deleteButtonEl.appendChild(deleteImgEl);
 };
 
 export {renderTodo};

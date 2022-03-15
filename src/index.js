@@ -214,6 +214,21 @@ mainDivEl.addEventListener("click",(target)=>{
         renderTodo(newTodo);
     }
 
+    const isDeleteImgEl = target.target.matches("div.todo-item button.delete img") === true;
+    const isDeleteButtonEl = target.target.matches("div.todo-item button.delete") === true;
+    if(isDeleteButtonEl || isDeleteImgEl){
+        const currentTodoId = +target.target.dataset.todoId;
+        const currentTodoIndex = currentProject.todos.findIndex(todo => todo.id === currentTodoId);
+
+        currentProject.todos.splice(currentTodoIndex,1);
+        store.set("projects",listOfProjects);
+
+        const targetTodoEl = document.querySelector(`div.todo-item[data-todo-id="${currentTodoId}"]`);
+        targetTodoEl.remove();
+
+    }
+
+
 });
 
 //Remove readonly from inputs when focused
