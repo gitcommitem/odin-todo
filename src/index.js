@@ -1,8 +1,7 @@
 import "./style.css";
 let store = require('store');
-const listOfProjects = [];
-store.set("projects",listOfProjects);
-console.log(store.get("projects"));
+
+let listOfProjects = [];
 
 import { createProject } from "./projectFactory";
 import { renderProject } from "./renderProject";
@@ -12,26 +11,45 @@ import { focusProject } from "./focusProject";
 import { createTodoObj } from "./todoFactory";
 import { renderTodo } from "./renderTodo";
 
-const general = createProject("📨","General","General to-dos","",listOfProjects);
-listOfProjects.push(general);
-store.set("projects",listOfProjects);
-console.log(store.get("projects"));
-renderProjectList(general);
-focusProject(general);
-renderProject(general);
+if(store.get("projects") === undefined){
+    store.set("projects",listOfProjects);
 
-const test1 = createTodoObj("This is a high priority card","","","high","",general);
-general.todos.push(test1);
-const test2 = createTodoObj("This is a medium priority card","","","med","",general);
-general.todos.push(test2);
-const test3 = createTodoObj("This is a low priority card","","","low","",general);
-general.todos.push(test3);
-const test4 = createTodoObj("This is a card with no priority","","","none","",general);
-general.todos.push(test4);
+    const general = createProject("📨","General","General to-dos","",listOfProjects);
+    listOfProjects.push(general);
+    renderProjectList(general);
+    focusProject(general);
+    renderProject(general);
 
-general.todos.forEach(todo => {
-    renderTodo(todo);
-})
+    const test1 = createTodoObj("This is a high priority card","","","high","",general);
+    general.todos.push(test1);
+    const test2 = createTodoObj("This is a medium priority card","","","med","",general);
+    general.todos.push(test2);
+    const test3 = createTodoObj("This is a low priority card","","","low","",general);
+    general.todos.push(test3);
+    const test4 = createTodoObj("This is a card with no priority","","","none","",general);
+    general.todos.push(test4);
+
+    store.set("projects",listOfProjects);
+
+    general.todos.forEach(todo => {
+        renderTodo(todo);
+    })
+}
+else{
+    listOfProjects = store.get("projects");
+    listOfProjects.forEach(project=>{
+        renderProjectList(project);
+    })
+    focusProject(listOfProjects[0]);
+    renderProject(listOfProjects[0]);
+    listOfProjects[0].todos.forEach(todo => {
+        renderTodo(todo);
+    })
+    console.log(store.get("projects"));
+};
+
+
+
 
 import { removePrevProjTodos } from "./removePrevProjTodos";
 
@@ -47,6 +65,7 @@ sidebarEl.addEventListener("click",(target) =>{
     if(isAddNewProjectButtonEl){
         const newProj = createProject("","","","",listOfProjects);
         listOfProjects.push(newProj);
+        store.set("projects",listOfProjects);
         console.log(newProj);
         renderProjectList(newProj);
         focusProject(newProj);
@@ -86,6 +105,7 @@ mainDivEl.addEventListener("click",(target)=>{
     if(isAddNewProjectButtonEl){
         const newProj = createProject("","","","",listOfProjects);
         listOfProjects.push(newProj);
+        store.set("projects",listOfProjects);
         console.log(newProj);
         renderProjectList(newProj);
         focusProject(newProj);
@@ -115,12 +135,15 @@ mainDivEl.addEventListener("click",(target)=>{
     if(isDeleteAllTodosLiEl){
             removePrevProjTodos();
             currentProject.todos.length = 0;
+            store.set("projects",listOfProjects);
             console.log(target);
     };
 
     const isDeleteProjectLiEl = target.target.matches("section#project-info div.option-popup li#delete-project") === true;
     if(isDeleteProjectLiEl){
         listOfProjects.splice(currentProjectIndex,1);
+        store.set("projects",listOfProjects);
+
         const targetProjectLiEl = document.querySelector(`li[data-project-id="${currentProjectId}"]`)
         targetProjectLiEl.remove();
 
@@ -145,6 +168,7 @@ mainDivEl.addEventListener("click",(target)=>{
     if(isAddHighPriorityButtonEl || isAddHighPriorityImgEl){
         const newTodo = createTodoObj("","","","high","",currentProject);
         currentProject.todos.push(newTodo);
+        store.set("projects",listOfProjects);
         renderTodo(newTodo);
         console.log(currentProject.todos);
     }
@@ -154,6 +178,7 @@ mainDivEl.addEventListener("click",(target)=>{
     if(isAddMedPriorityButtonEl || isAddMedPriorityImgEl){
         const newTodo = createTodoObj("","","","med","",currentProject);
         currentProject.todos.push(newTodo);
+        store.set("projects",listOfProjects);
         renderTodo(newTodo);
     }
 
@@ -162,6 +187,7 @@ mainDivEl.addEventListener("click",(target)=>{
     if(isAddLowPriorityButtonEl || isAddLowPriorityImgEl){
         const newTodo = createTodoObj("","","","low","",currentProject);
         currentProject.todos.push(newTodo);
+        store.set("projects",listOfProjects);
         renderTodo(newTodo);
     }
 
@@ -170,6 +196,7 @@ mainDivEl.addEventListener("click",(target)=>{
     if(isAddNoPriorityButtonEl || isAddNoPriorityImgEl){
         const newTodo = createTodoObj("","","","none","",currentProject);
         currentProject.todos.push(newTodo);
+        store.set("projects",listOfProjects);
         renderTodo(newTodo);
     }
 
@@ -238,12 +265,14 @@ mainDivEl.addEventListener("change",(target)=>{
     const isTitleInputEl = target.target.matches("section#project-info div.hflex input#projectTitle") === true;
     if(isTitleInputEl){
         currentProject.title = getUpdatedValue(target.target);
+        store.set("projects",listOfProjects);
         updateProjectList(currentProject);
     }
 
     const isDescTxtAreaEl = target.target.matches("section#project-info textarea#proj-desc") === true;
     if(isDescTxtAreaEl){
         currentProject.desc = getUpdatedValue(target.target);
+        store.set("projects",listOfProjects);
     }
 
     //Updating values for edited todo cards
@@ -254,16 +283,19 @@ mainDivEl.addEventListener("change",(target)=>{
     const isTodoTitleInputEl = target.target.matches("div.todo-info input.todo-title") === true;
     if(isTodoTitleInputEl){
         currentTodo.title = getUpdatedValue(target.target);
+        store.set("projects",listOfProjects);
     };
 
     const isTodoTxtAreaEl = target.target.matches("div.todo-info textarea") === true;
     if(isTodoTxtAreaEl){
         currentTodo.desc = getUpdatedValue(target.target);
+        store.set("projects",listOfProjects);
     };
 
     const isStatusSelectEl = target.target.matches("select.status") === true;
     if(isStatusSelectEl){
         currentTodo.status = getUpdatedValue(target.target);
+        store.set("projects",listOfProjects);
 
         const statusSelectEl = document.querySelector(`select.status[data-todo-id="${currentTodoId}"]`);
         statusSelectEl.classList.add("hidden");
@@ -279,6 +311,7 @@ mainDivEl.addEventListener("change",(target)=>{
 
         const dueDateInputEl = document.querySelector(`input.dueDate[data-todo-id="${currentTodoId}"][type="date"]`);
         currentTodo.dueDate = getUpdatedValue(target.target);
+        store.set("projects",listOfProjects);
         dueDateInputEl.classList.add("hidden");
 
         const dueInputEl = document.querySelector(`input.dueDate[data-todo-id="${currentTodoId}"]`);
@@ -299,6 +332,7 @@ mainDivEl.addEventListener("change",(target)=>{
         if(checkboxEl.checked){
             dueDateInputEl.disabled = true;
             currentTodo.dueDate = "No due date";
+            store.set("projects",listOfProjects);
 
             const dueInputEl = document.querySelector(`input.dueDate[data-todo-id="${currentTodoId}"]`);
             dueInputEl.value = currentTodo.dueDate;
