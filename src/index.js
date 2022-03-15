@@ -59,6 +59,13 @@ sidebarEl.addEventListener("click",(target) =>{
     if(projectOptContEl.classList.contains("hidden")===false){
         toggleHidden(projectOptContEl);
     }
+
+    const deadlineContEl = document.querySelector("div.deadline-cont");
+    if(deadlineContEl.classList.contains("hidden")===false){
+        toggleHidden(deadlineContEl);
+        const deadlineInputEl = document.querySelector("input#deadline");
+        toggleHidden(deadlineInputEl);
+    }
     
     const isAddNewProjectButtonEl = target.target.matches("button") === true;
     if(isAddNewProjectButtonEl){
@@ -119,6 +126,13 @@ mainDivEl.addEventListener("click",(target)=>{
     const projectOptContEl = document.querySelector("section#project-info div.option-popup");
     if(projectOptContEl.classList.contains("hidden")===false){
         toggleHidden(projectOptContEl);
+    }
+
+    const deadlineContEl = document.querySelector("div.deadline-cont");
+    if(deadlineContEl.classList.contains("hidden")===false){
+        toggleHidden(deadlineContEl);
+        const deadlineInputEl = document.querySelector("input#deadline");
+        toggleHidden(deadlineInputEl);
     }
 
     const isProjectOptImgEl = target.target.matches("section#project-info button img") === true;
@@ -208,12 +222,13 @@ mainDivEl.addEventListener("focusin",(target)=>{
         toggleReadOnly(target.target);
     }
 
-     //Updating values for edited project info
-     const currentProjectId = +document.querySelector("div#sidebar li.focus").dataset.projectId;
-     const currentProjectIndex = listOfProjects.findIndex(project => project.id === currentProjectId);
-     const currentProject = listOfProjects[currentProjectIndex];
-
-
+    const isDeadlineInputEl = target.target.matches("input#deadline") === true;
+    if(isDeadlineInputEl && isReadOnly){
+        const deadlineInputEl = document.querySelector("input#deadline");
+        deadlineInputEl.classList.add("hidden");
+        const deadLineContEl = document.querySelector("div.deadline-cont");
+        deadLineContEl.classList.remove("hidden");
+    };
 
     const currentTodoId = +target.target.dataset.todoId;
 
@@ -258,6 +273,43 @@ mainDivEl.addEventListener("change",(target)=>{
         store.set("projects",listOfProjects);
         updateProjectList(currentProject);
     }
+
+    const isDeadlineDateInputEl = target.target.matches("input[type='date']#deadline") === true;
+    if(isDeadlineDateInputEl){
+        currentProject.deadline = getUpdatedValue(target.target);
+        store.set("projects",listOfProjects);
+
+        const deadLineContEl = document.querySelector("div.deadline-cont");
+        deadLineContEl.classList.add("hidden");
+
+        const deadlineInputEl = document.querySelector("input#deadline");
+        deadlineInputEl.value = `Deadline is ${currentProject.deadline}`;
+        deadlineInputEl.classList.remove("hidden");
+    };
+
+    const isDeadlineCheckBoxEl = target.target.matches("input[type='checkbox']#deadline") === true;
+    if(isDeadlineCheckBoxEl){
+        const checkboxEl = document.querySelector("input[type='checkbox']#deadline");
+        const dateInputEl = document.querySelector("input[type='date']#deadline");
+
+        if(checkboxEl.checked){
+            dateInputEl.disabled = true;
+            currentProject.deadline = "No deadline for this project";
+            store.set("projects",listOfProjects);
+
+            const deadLineContEl = document.querySelector("div.deadline-cont");
+            deadLineContEl.classList.add("hidden");
+    
+            const deadlineInputEl = document.querySelector("input#deadline");
+            deadlineInputEl.value = currentProject.deadline;
+            deadlineInputEl.classList.remove("hidden");
+    
+        }else{
+            dateInputEl.disabled = false;
+        }
+
+    }
+
 
     const isDescTxtAreaEl = target.target.matches("section#project-info textarea#proj-desc") === true;
     if(isDescTxtAreaEl){
