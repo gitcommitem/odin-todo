@@ -37,14 +37,22 @@ if(store.get("projects") === undefined){
 }
 else{
     listOfProjects = store.get("projects");
-    listOfProjects.forEach(project=>{
-        renderProjectList(project);
-    })
-    focusProject(listOfProjects[0]);
-    renderProject(listOfProjects[0]);
-    listOfProjects[0].todos.forEach(todo => {
-        renderTodo(todo);
-    })
+
+    if(listOfProjects.length === 0){
+        const emptyStateDivEl = document.querySelector("div.empty-state");
+        emptyStateDivEl.classList.remove("hidden");
+    }
+    else{
+        listOfProjects.forEach(project=>{
+            renderProjectList(project);
+        })
+        focusProject(listOfProjects[0]);
+        renderProject(listOfProjects[0]);
+        listOfProjects[0].todos.forEach(todo => {
+            renderTodo(todo);
+        })
+    }
+
 };
 
 
