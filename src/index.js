@@ -20,13 +20,13 @@ if(store.get("projects") === undefined){
     focusProject(general);
     renderProject(general);
 
-    const test1 = createTodoObj("This is a high priority card","","","high","",general);
+    const test1 = createTodoObj("This is a high priority todo","","","high","",general);
     general.todos.push(test1);
-    const test2 = createTodoObj("This is a medium priority card","","","med","",general);
+    const test2 = createTodoObj("This is a medium priority todo","","","med","",general);
     general.todos.push(test2);
-    const test3 = createTodoObj("This is a low priority card","","","low","",general);
+    const test3 = createTodoObj("This is a low priority todo","","","low","",general);
     general.todos.push(test3);
-    const test4 = createTodoObj("This is a card with no priority","","","none","",general);
+    const test4 = createTodoObj("This is a todo with no priority","","","none","",general);
     general.todos.push(test4);
 
     store.set("projects",listOfProjects);
