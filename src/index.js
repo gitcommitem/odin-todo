@@ -45,7 +45,6 @@ else{
     listOfProjects[0].todos.forEach(todo => {
         renderTodo(todo);
     })
-    console.log(store.get("projects"));
 };
 
 
@@ -66,7 +65,6 @@ sidebarEl.addEventListener("click",(target) =>{
         const newProj = createProject("","","","",listOfProjects);
         listOfProjects.push(newProj);
         store.set("projects",listOfProjects);
-        console.log(newProj);
         renderProjectList(newProj);
         focusProject(newProj);
         renderProject(newProj);
@@ -92,7 +90,6 @@ sidebarEl.addEventListener("click",(target) =>{
 
     };
 
-    console.log(target.target.tagName);
 });
 
 import { toggleReadOnly } from "./toggleReadOnly";
@@ -106,7 +103,6 @@ mainDivEl.addEventListener("click",(target)=>{
         const newProj = createProject("","","","",listOfProjects);
         listOfProjects.push(newProj);
         store.set("projects",listOfProjects);
-        console.log(newProj);
         renderProjectList(newProj);
         focusProject(newProj);
         renderProject(newProj);
@@ -136,7 +132,6 @@ mainDivEl.addEventListener("click",(target)=>{
             removePrevProjTodos();
             currentProject.todos.length = 0;
             store.set("projects",listOfProjects);
-            console.log(target);
     };
 
     const isDeleteProjectLiEl = target.target.matches("section#project-info div.option-popup li#delete-project") === true;
@@ -158,8 +153,6 @@ mainDivEl.addEventListener("click",(target)=>{
                 renderTodo(todo);
             });
         }
-
-        console.log(listOfProjects);
   
     };
 
@@ -170,7 +163,6 @@ mainDivEl.addEventListener("click",(target)=>{
         currentProject.todos.push(newTodo);
         store.set("projects",listOfProjects);
         renderTodo(newTodo);
-        console.log(currentProject.todos);
     }
 
     const isAddMedPriorityImgEl = target.target.matches("section#med button.add img") === true;
@@ -200,7 +192,6 @@ mainDivEl.addEventListener("click",(target)=>{
         renderTodo(newTodo);
     }
 
-    console.log(target.target.tagName);
 });
 
 //Remove readonly from inputs when focused
@@ -247,7 +238,6 @@ mainDivEl.addEventListener("focusin",(target)=>{
         labelEl.classList.remove("hidden");
     }
 
-    console.log(target.target);
 
 });
 
@@ -350,7 +340,6 @@ mainDivEl.addEventListener("change",(target)=>{
 
     }
 
-    console.log(target);
 });
 
 //Make inputs readonly again when focus is lost
@@ -367,6 +356,5 @@ mainDivEl.addEventListener("focusout",(target)=>{
         toggleReadOnly(target.target);
     }
 
-    console.log(target.target);
 
 });
